@@ -1,0 +1,43 @@
+generated: '2026-07-19'
+method: searched
+source: https://developer.fama.io/reference/authentication
+docs: https://developer.fama.io/reference/authentication
+summary:
+  types: [http, oauth2]
+  http_scheme: bearer
+  oauth2_flows: [clientCredentials]
+  notes: >-
+    The Fama REST API authenticates every request with a bearer token in the
+    Authorization header. New customers use the v2 "API Token" onboarding; customers
+    migrating from the deprecated v1 portal mint an access token via an OAuth 2.0
+    client-credentials exchange (HTTP Basic of username:password against the v1 token
+    endpoint) and then present the resulting token as a bearer credential.
+schemes:
+  - name: bearerAuth
+    type: http
+    scheme: bearer
+    description: >-
+      Present the Fama access/API token as `Authorization: Bearer <YOUR_ACCESS_TOKEN>`.
+      Used by the v2 public API (public-api.fama.io) and by v1 once an access token
+      is obtained.
+    applies_to: [v1, v2]
+    source: https://developer.fama.io/reference/authentication
+  - name: oauth2ClientCredentials
+    type: oauth2
+    description: >-
+      v1 access-token retrieval. POST to the token endpoint with
+      grant_type=client_credentials and an `Authorization: Basic base64(username:password)`
+      header (admin credentials from the deprecated v1 portal). Response returns the
+      bearer token plus an `expires_in` field. No public scope catalog is documented.
+    flows:
+      - flow: clientCredentials
+        tokenUrl: https://api.sandbox.service.fama.io/api/oauth/token
+        scopes: {}
+    source: https://developer.fama.io/docs/access-token
+token_delivery: header
+header_example: 'Authorization: Bearer <YOUR_ACCESS_TOKEN>'
+onboarding:
+  - guide: API Token (v2, new customers)
+    url: https://developer.fama.io/reference/api-token
+  - guide: Access Token (v1 migration)
+    url: https://developer.fama.io/docs/access-token
