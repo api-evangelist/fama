@@ -1,0 +1,12 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+source: https://trust.fama.io/
+url: https://trust.fama.io/
+certifications:
+- SOC 2 Type 1
+evidence:
+- source: https://trust.fama.io/
+  keywords:
+  - soc 2
+  - trust center

@@ -1,0 +1,53 @@
+generated: '2026-07-19'
+method: searched
+source: https://developer.fama.io/reference/error-codes
+docs: https://developer.fama.io/reference/error-codes
+format: custom-json-envelope
+envelope:
+  description: >-
+    Fama returns errors as a JSON object rather than RFC 9457 problem+json.
+    Message text appears under `message`, `Message`, or `detail`. FastAPI-style
+    422 validation errors return a `detail[]` array of {loc, msg, type} entries.
+  fields: [message, Message, detail]
+  validation_shape: '{"detail": [{"loc": [...], "msg": "...", "type": "..."}]}'
+errors:
+  - status: 400
+    title: Bad Request
+    meaning: Malformed or missing required data
+    remediation: Verify required parameters and valid JSON formatting.
+  - status: 401
+    title: Unauthorized
+    meaning: Valid authentication required
+    remediation: Provide or refresh the authentication token.
+  - status: 403
+    title: Forbidden
+    meaning: Authenticated but lacking permissions
+    remediation: Confirm the user role/permissions for the requested resource.
+  - status: 404
+    title: Not Found
+    meaning: Requested resource does not exist
+    remediation: Confirm the resource id (report_uuid / company_uuid) exists.
+  - status: 422
+    title: Unprocessable Entity
+    meaning: Well-formed request but invalid data
+    remediation: Inspect the detail[] validation errors and correct field values.
+  - status: 429
+    title: Too Many Requests
+    meaning: Rate limit exceeded (100 req/min per token)
+    remediation: Implement exponential backoff; wait ~60 seconds and retry.
+  - status: 500
+    title: Internal Server Error
+    meaning: Generic server error
+    remediation: Retry after a short delay; contact support if persistent.
+  - status: 502
+    title: Bad Gateway
+    meaning: Invalid response from upstream service
+    remediation: Retry after the server recovers.
+  - status: 503
+    title: Service Unavailable
+    meaning: API temporarily unavailable
+    remediation: Retry after maintenance completes.
+  - status: 504
+    title: Gateway Timeout
+    meaning: Server took too long to respond
+    remediation: Retry the request.

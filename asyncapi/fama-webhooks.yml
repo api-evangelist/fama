@@ -1,0 +1,38 @@
+generated: '2026-07-19'
+method: searched
+source: https://developer.fama.io/reference/callbacks
+docs: https://developer.fama.io/reference/callbacks
+spec_type: Webhooks
+transport: http-callback
+configuration:
+  method: out-of-band
+  notes: >-
+    Create an endpoint that can receive Fama messages, then provide the callback
+    URL to your account manager for configuration on your company record via API
+    Settings. There is no self-serve subscription API.
+signature_verification: none-documented
+events:
+  - name: report.completed
+    trigger: A report reaches DONE status
+    delivery: HTTP callback to the configured company endpoint
+    payload_fields:
+      - report_uuid
+      - full_name
+      - email
+    notes: >-
+      Return a prompt success response and process asynchronously; do not block
+      on downloading large PDFs. Use the report_uuid to fetch results, summary,
+      or the signed PDF.
+polling_fallback:
+  operation: _check_status_company__company_uuid__check_get
+  path: GET /company/{company_uuid}/check
+  notes: >-
+    If callbacks are not configured or fail, poll Check Status until the report
+    reaches DONE status, then retrieve results by report_uuid.
+retrieval_after_completion:
+  - _get_summary_report__report_uuid__summary_get
+  - _get_person_report__report_uuid__person_get
+  - _get_posts_report__report_uuid__posts_get
+  - _get_profiles_report__report_uuid__profiles_get
+  - _get_web_content_report__report_uuid__web_content_get
+  - _download_report_pdf_report__report_uuid__pdf_get

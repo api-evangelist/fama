@@ -1,0 +1,45 @@
+# Fama Documentation
+
+> Documentation for Fama
+
+## Guides
+- [Migrating to v2](https://developer.fama.io/docs/migrating-to-v2.md): This section is reserved for users migrating from our deprecated v1 portal
+- [Access Token](https://developer.fama.io/docs/access-token.md): Retrieve an access token to authenticate with the Fama API
+- [Retrieving Completed Results](https://developer.fama.io/docs/retrieving-completed-results.md): Learn how to retrieve completed report results using webhooks or polling, then fetch JSON result data or a signed PDF download URL.
+- [Report Completion Callbacks](https://developer.fama.io/docs/report-completion-callbacks.md): Receive a completion callback when a report is finished and ready for download
+
+## API Reference
+- [Introduction](https://developer.fama.io/reference/fama-rest-api.md): Your reference for building successful integrations with the Fama API
+- [Authentication](https://developer.fama.io/reference/authentication.md): Authentication ensures that only authorized users can access the Fama API, protecting sensitive data and maintaining system integrity.
+- [API Token](https://developer.fama.io/reference/api-token.md)
+- [Token Security](https://developer.fama.io/reference/security-best-practices.md): Your API token serves as authentication credentials that grant access to sensitive data and operations within the Fama API. We strongly recommend safeguarding them to prevent unauthorized access and potential security breaches. This is crucial for maintaining the security and integrity of your application.
+- [Rate Limits](https://developer.fama.io/reference/rate-limits.md): Rate limits are enforced to control the number of operations a user can perform within a set time frame. This helps prevent overloading the system, ensuring that the service remains stable and reliable for everyone.
+- [Error Codes](https://developer.fama.io/reference/error-codes.md): The Fama API uses both standardized and conventional HTTP status codes to indicate API request failures. We’ve documented the possible error responses, along with few potential causes to help you troubleshoot effectively.
+- [Callbacks](https://developer.fama.io/reference/callbacks.md): Set up callbacks to receive report completion notifications when a report reaches DONE status, and use Check Status as a polling fallback.
+- [Get User](https://developer.fama.io/reference/get_user_api_user_get.md): Retrieves a list of details for a specific user
+- [Get Company](https://developer.fama.io/reference/get_company_api_company_get.md): Retrieves a list of details for a company
+- [Get Check Types](https://developer.fama.io/reference/get_check_types_api_checktypes_get.md): Retrieves a list of available check types
+- [Get Flag Kit All](https://developer.fama.io/reference/get_flag_kit_all_api_flagkits_all_get.md): Retrieves a list of all available flag kits
+- [Person](https://developer.fama.io/reference/person.md): List of available endpoints
+- [Get Person](https://developer.fama.io/reference/get_person_api_person__report_id__get.md): Retrieves a list of details for a specific person
+- [Get Person Profiles](https://developer.fama.io/reference/get_person_profiles_api_person__report_id__profile_get.md): Retrieves a list of social media profiles for a specific person
+- [Get Person Posts](https://developer.fama.io/reference/get_person_posts_api_person__report_id__post_get.md): Retrieves a list of posts for a specific person
+- [Get Person Articles](https://developer.fama.io/reference/get_person_articles_api_person__report_id__searchcontent_get.md): Retrieves a list of articles for a specific person
+- [Get Person All](https://developer.fama.io/reference/get_person_all_api_person__report_id__all_get.md): Retrieves a list of all available details for a specific person
+- [Create Person](https://developer.fama.io/reference/create_person_api_person_post.md): Generates a new person record by submitting various personal details
+- [Get Report Pdf](https://developer.fama.io/reference/get_report_pdf_api_person__report_id__report_get.md): Retrieves PDF for the given report ID
+- [Request Check](https://developer.fama.io/reference/_request_check_company__company_uuid__check_post.md): Submit a new check request, validate the required request fields, and follow the next steps to monitor status and retrieve report data.
+- [Check Status](https://developer.fama.io/reference/_check_status_company__company_uuid__check_get.md): Retrieve check status records for a company, filter results by date, name, status, or pagination, and use report UUIDs to fetch report data.
+- [Download Report Pdf](https://developer.fama.io/reference/_download_report_pdf_report__report_uuid__pdf_get.md): Download the PDF for a report by report UUID. A successful request returns a redirect response for the report PDF.
+- [Get Summary](https://developer.fama.io/reference/_get_summary_report__report_uuid__summary_get.md): Retrieve aggregate summary counts for a completed report by report UUID. Use this endpoint to get totals for posts, web content, adverse findings, community findings, keywords, and overall results.
+- [Get My Companies](https://developer.fama.io/reference/_get_my_companies_my_companies_get.md): Retrieve the companies available to your account, filter results by company name, and use pagination to page through large result sets.
+- [Get Company](https://developer.fama.io/reference/_get_company_company__company_uuid__get.md): Retrieve company details by company UUID. Use this endpoint to confirm the company name and parent company relationship before requesting checks or reviewing check status records.
+- [Get My Check Types](https://developer.fama.io/reference/_get_my_check_types_my_check_types_get.md): Retrieve the check types available to the authenticated user. If your user has access to multiple companies, pass `company_uuid` to return check types for a specific company.
+- [Get Check Type](https://developer.fama.io/reference/_get_check_type_check_type__check_type_uuid__get.md): Retrieve details for a specific check type by check type UUID, including its name, report type, lookback period, SLA, item types, item sources, and configured behaviors.
+- [Get My Behavior Kits](https://developer.fama.io/reference/_get_my_behavior_kits_my_behavior_kits_get.md): Retrieve the behavior kits available to the authenticated user. If your user has access to multiple companies, pass `company_uuid` to return behavior kits for a specific company.
+- [Get Behavior Kit](https://developer.fama.io/reference/_get_behavior_kit_behavior_kit__behavior_kit_uuid__get.md): Retrieve details for a specific behavior kit by behavior kit UUID, including its name, lookback period, image display setting, configured behaviors, and keyword groups.
+- [Get Person](https://developer.fama.io/reference/_get_person_report__report_uuid__person_get.md): Retrieve the person details associated with a report by report UUID, including names, emails, addresses, jobs, degrees, identifications, and phone numbers.
+- [Get Profiles](https://developer.fama.io/reference/_get_profiles_report__report_uuid__profiles_get.md): Retrieve social profile URLs associated with a report by report UUID. Use pagination parameters to page through profile results.
+- [Get Posts](https://developer.fama.io/reference/_get_posts_report__report_uuid__posts_get.md): Retrieve posts associated with a report by report UUID. Use pagination parameters to page through post results and review each post's URL, text, type, keywords, and behaviors.
+- [Get Web Content](https://developer.fama.io/reference/_get_web_content_report__report_uuid__web_content_get.md): Retrieve web content associated with a report by report UUID. Use pagination parameters to page through web content results and review each item's URL, title, content, and behaviors.
+- [Get Me](https://developer.fama.io/reference/_get_me_me_get.md): Retrieve information for the authenticated API user. Use this endpoint to confirm that your bearer token is valid and associated with an active user.

@@ -1,0 +1,104 @@
+generated: '2026-07-19'
+method: derived
+source: https://developer.fama.io/llms.txt
+note: >-
+  Entity graph derived from the published v2 Fama REST API reference (resource
+  paths and id-reference fields). Ids are UUIDs; the report/company/person graph
+  is inferred from path parameters (company_uuid, report_uuid, check_type_uuid,
+  behavior_kit_uuid) and callback payload fields.
+entities:
+  - name: Company
+    id: company_uuid
+    domain: account
+    relationships:
+      - has_many: Check
+        via: company_uuid
+      - has_many: CheckType
+        via: company_uuid
+      - has_many: BehaviorKit
+        via: company_uuid
+      - has_one: Company
+        as: parent_company
+        via: parent_company
+  - name: User
+    id: user
+    domain: account
+    relationships:
+      - belongs_to: Company
+        via: company_uuid
+  - name: CheckType
+    id: check_type_uuid
+    domain: configuration
+    fields: [name, report_type, lookback_period, sla, item_types, item_sources, behaviors]
+    relationships:
+      - belongs_to: Company
+        via: company_uuid
+  - name: BehaviorKit
+    id: behavior_kit_uuid
+    domain: configuration
+    fields: [name, lookback_period, image_display, behaviors, keyword_groups]
+    relationships:
+      - belongs_to: Company
+        via: company_uuid
+  - name: Check
+    id: report_uuid
+    domain: screening
+    fields: [status, name, requested_at]
+    relationships:
+      - belongs_to: Company
+        via: company_uuid
+      - has_one: Report
+        via: report_uuid
+      - belongs_to: CheckType
+        via: check_type_uuid
+  - name: Report
+    id: report_uuid
+    domain: screening
+    relationships:
+      - has_one: Person
+        via: report_uuid
+      - has_one: Summary
+        via: report_uuid
+      - has_many: Profile
+        via: report_uuid
+      - has_many: Post
+        via: report_uuid
+      - has_many: WebContent
+        via: report_uuid
+      - has_one: ReportPdf
+        via: report_uuid
+  - name: Person
+    id: report_uuid
+    domain: subject
+    fields: [names, emails, addresses, jobs, degrees, identifications, phone_numbers]
+    relationships:
+      - belongs_to: Report
+        via: report_uuid
+  - name: Profile
+    id: report_uuid
+    domain: findings
+    fields: [profile_url]
+    relationships:
+      - belongs_to: Report
+        via: report_uuid
+  - name: Post
+    id: report_uuid
+    domain: findings
+    fields: [url, text, type, keywords, behaviors]
+    relationships:
+      - belongs_to: Report
+        via: report_uuid
+  - name: WebContent
+    id: report_uuid
+    domain: findings
+    fields: [url, title, content, behaviors]
+    relationships:
+      - belongs_to: Report
+        via: report_uuid
+  - name: Summary
+    id: report_uuid
+    domain: findings
+    fields: [posts, web_content, adverse_findings, community_findings, keywords, results]
+    relationships:
+      - belongs_to: Report
+        via: report_uuid

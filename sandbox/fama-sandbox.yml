@@ -1,0 +1,22 @@
+generated: '2026-07-19'
+method: searched
+source: https://developer.fama.io/reference/fama-rest-api
+docs: https://developer.fama.io/reference/authentication
+summary: >-
+  Fama publishes a dedicated sandbox environment so integrators can experiment
+  with the API and explore its full capabilities before transitioning to the
+  live environment. Access requires an active company and user account in the
+  sandbox; the support team provisions access on request.
+environments:
+  - name: sandbox
+    v2_base_url: https://public-api-sandbox.fama.io
+    v1_token_url: https://api.sandbox.service.fama.io/api/oauth/token
+    purpose: safe experimentation before go-live
+  - name: live
+    v2_base_url: https://public-api.fama.io
+    purpose: production
+test_values_published: false
+notes: >-
+  No magic/static test identifiers (test cards, fixed report_uuids) are
+  published in the free documentation; the sandbox is a full isolated
+  environment provisioned per company rather than a set of magic values.

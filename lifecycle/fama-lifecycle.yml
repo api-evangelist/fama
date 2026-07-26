@@ -1,0 +1,34 @@
+generated: '2026-07-19'
+method: searched
+source: https://developer.fama.io/llms.txt
+versioning:
+  scheme: portal-version
+  current: v2
+  docs: https://developer.fama.io/docs/migrating-to-v2
+deprecation:
+  deprecated_versions: [v1]
+  policy: >-
+    The v1 portal is deprecated. Fama publishes a "Migrating to v2" guide for
+    users moving off the deprecated v1 portal; v1 access tokens remain available
+    to migrating customers during transition.
+  migration_guide: https://developer.fama.io/docs/migrating-to-v2
+status_page: https://status.fama.io
+sandbox:
+  available: true
+  base_url: https://public-api-sandbox.fama.io
+  see: sandbox/fama-sandbox.yml
+deprecated_operations:
+  - get_user_api_user_get
+  - get_company_api_company_get
+  - get_check_types_api_checktypes_get
+  - get_flag_kit_all_api_flagkits_all_get
+  - create_person_api_person_post
+  - get_person_api_person__report_id__get
+  - get_person_profiles_api_person__report_id__profile_get
+  - get_person_posts_api_person__report_id__post_get
+  - get_person_articles_api_person__report_id__searchcontent_get
+  - get_person_all_api_person__report_id__all_get
+  - get_report_pdf_api_person__report_id__report_get
+notes: >-
+  The v1 operations above belong to the deprecated portal and are superseded by
+  the v2 company/report/behavior-kit surface.

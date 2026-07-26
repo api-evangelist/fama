@@ -1,0 +1,21 @@
+generated: '2026-07-19'
+method: searched
+source: https://developer.fama.io/reference/rate-limits
+docs: https://developer.fama.io/reference/rate-limits
+scope: per-api-token
+rate_limits:
+  - name: default
+    limit_count: 100
+    window: minute
+    interval_seconds: 60
+    scope: per-api-token
+    reset: rolling-per-minute
+    exceeded_status: 429
+    description: >-
+      100 requests per minute per API token. Exceeding the limit returns
+      HTTP 429 Too Many Requests; the window resets every minute. The docs
+      recommend exponential backoff and waiting ~60 seconds before retrying.
+enforcement:
+  status_code: 429
+  guidance: Implement exponential backoff; retry after ~60s.
+headers_documented: false

@@ -1,0 +1,37 @@
+generated: '2026-07-19'
+method: searched
+source: https://trust.fama.io/
+docs: https://developer.fama.io/reference/error-codes
+standards:
+  - id: soc2-type1
+    conforms: true
+    evidence: SOC 2 Type 1 report listed on the Fama Technologies Trust Center (SafeBase)
+    source: https://trust.fama.io/
+  - id: fcra
+    conforms: true
+    evidence: Pricing/product pages state screening reports are FCRA-compliant
+    source: https://fama.io/pricing
+  - id: eeoc
+    conforms: true
+    evidence: Product pages state EEOC-aligned adjudication (protected-class filtering)
+    source: https://fama.io/pricing
+  - id: gdpr
+    conforms: true
+    evidence: Product/privacy pages reference GDPR / applicable privacy regulations
+    source: https://fama.io/privacy-policy
+  - id: oauth2
+    conforms: true
+    evidence: v1 access-token retrieval uses OAuth 2.0 client-credentials grant
+    source: https://developer.fama.io/docs/access-token
+  - id: bearer-token-auth
+    conforms: true
+    evidence: All requests authenticate with Authorization Bearer tokens
+    source: https://developer.fama.io/reference/authentication
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom JSON envelope (message/detail), not application/problem+json
+    source: https://developer.fama.io/reference/error-codes
+  - id: webhooks
+    conforms: true
+    evidence: Report-completion HTTP callbacks on DONE status
+    source: https://developer.fama.io/reference/callbacks

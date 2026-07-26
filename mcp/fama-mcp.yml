@@ -1,0 +1,74 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: https://developer.fama.io/llms.txt
+note: >-
+  No official hosted Fama MCP server was found. This is a CANDIDATE tool list
+  derived from the published v2 Fama REST API reference operationIds. Not a
+  provider claim.
+server:
+  name: fama
+  transport: http
+  base_url: https://public-api.fama.io
+  auth: bearer
+tools:
+  - name: get_me
+    description: Confirm the bearer token is valid and return the authenticated user.
+    source_operation: _get_me_me_get
+    path: GET /me
+  - name: list_my_companies
+    description: List the companies available to the account.
+    source_operation: _get_my_companies_my_companies_get
+    path: GET /my/companies
+  - name: get_company
+    description: Retrieve company details by company_uuid.
+    source_operation: _get_company_company__company_uuid__get
+    path: GET /company/{company_uuid}
+  - name: list_my_check_types
+    description: List the check types available to the authenticated user.
+    source_operation: _get_my_check_types_my_check_types_get
+    path: GET /my/check_types
+  - name: get_check_type
+    description: Retrieve details for a specific check type by check_type_uuid.
+    source_operation: _get_check_type_check_type__check_type_uuid__get
+    path: GET /check_type/{check_type_uuid}
+  - name: list_my_behavior_kits
+    description: List the behavior kits available to the authenticated user.
+    source_operation: _get_my_behavior_kits_my_behavior_kits_get
+    path: GET /my/behavior_kits
+  - name: get_behavior_kit
+    description: Retrieve a behavior kit by behavior_kit_uuid.
+    source_operation: _get_behavior_kit_behavior_kit__behavior_kit_uuid__get
+    path: GET /behavior_kit/{behavior_kit_uuid}
+  - name: request_check
+    description: Submit a new screening check request for a company.
+    source_operation: _request_check_company__company_uuid__check_post
+    path: POST /company/{company_uuid}/check
+  - name: check_status
+    description: Retrieve check status records for a company; poll until DONE.
+    source_operation: _check_status_company__company_uuid__check_get
+    path: GET /company/{company_uuid}/check
+  - name: get_report_summary
+    description: Retrieve aggregate summary counts for a completed report.
+    source_operation: _get_summary_report__report_uuid__summary_get
+    path: GET /report/{report_uuid}/summary
+  - name: get_report_person
+    description: Retrieve the person details associated with a report.
+    source_operation: _get_person_report__report_uuid__person_get
+    path: GET /report/{report_uuid}/person
+  - name: get_report_profiles
+    description: Retrieve social profile URLs associated with a report.
+    source_operation: _get_profiles_report__report_uuid__profiles_get
+    path: GET /report/{report_uuid}/profiles
+  - name: get_report_posts
+    description: Retrieve posts associated with a report.
+    source_operation: _get_posts_report__report_uuid__posts_get
+    path: GET /report/{report_uuid}/posts
+  - name: get_report_web_content
+    description: Retrieve web content associated with a report.
+    source_operation: _get_web_content_report__report_uuid__web_content_get
+    path: GET /report/{report_uuid}/web_content
+  - name: download_report_pdf
+    description: Download the signed PDF for a report by report_uuid.
+    source_operation: _download_report_pdf_report__report_uuid__pdf_get
+    path: GET /report/{report_uuid}/pdf

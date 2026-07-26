@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: generated
+source: https://developer.fama.io/llms.txt
+skills:
+  - file: fama-run-screening-check.md
+    name: Run a Fama screening check and retrieve the report
+    api: https://public-api.fama.io
+    operations:
+      - _get_me_me_get
+      - _get_my_companies_my_companies_get
+      - _get_my_check_types_my_check_types_get
+      - _request_check_company__company_uuid__check_post
+      - _check_status_company__company_uuid__check_get
+      - _get_summary_report__report_uuid__summary_get
+      - _get_person_report__report_uuid__person_get
+      - _download_report_pdf_report__report_uuid__pdf_get
+  - file: fama-review-report-findings.md
+    name: Review Fama report findings
+    api: https://public-api.fama.io
+    operations:
+      - _get_summary_report__report_uuid__summary_get
+      - _get_profiles_report__report_uuid__profiles_get
+      - _get_posts_report__report_uuid__posts_get
+      - _get_web_content_report__report_uuid__web_content_get
+      - _get_person_report__report_uuid__person_get

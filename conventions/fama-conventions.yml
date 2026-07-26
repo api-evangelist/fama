@@ -1,0 +1,50 @@
+generated: '2026-07-19'
+method: searched
+source: https://developer.fama.io/reference/fama-rest-api
+docs: https://developer.fama.io/reference/fama-rest-api
+authentication:
+  style: bearer-token
+  header: 'Authorization: Bearer <token>'
+  see: authentication/fama-authentication.yml
+versioning:
+  scheme: portal-version
+  current: v2
+  deprecated: [v1]
+  notes: >-
+    v2 is the current public API (base https://public-api.fama.io). v1 is a
+    deprecated portal; migrating customers follow the "Migrating to v2" guide.
+  see: lifecycle/fama-lifecycle.yml
+pagination:
+  style: parameters
+  notes: >-
+    Collection endpoints (posts, profiles, web content, check status, companies)
+    accept pagination parameters to page through large result sets. Exact
+    parameter names are not published in the free reference text.
+  observed_on:
+    - _get_posts_report__report_uuid__posts_get
+    - _get_profiles_report__report_uuid__profiles_get
+    - _get_web_content_report__report_uuid__web_content_get
+    - _check_status_company__company_uuid__check_get
+    - _get_my_companies_my_companies_get
+idempotency:
+  supported: false
+  notes: >-
+    No idempotency-key header or contract is documented. Report creation is a
+    request/callback flow; poll Check Status (or receive the completion callback)
+    to reconcile rather than relying on idempotent retries.
+async_pattern:
+  model: request-then-callback-or-poll
+  notes: >-
+    Submit a check, then either receive a completion callback when the report
+    reaches DONE status or poll Check Status as a fallback.
+  see: asyncapi/fama-webhooks.yml
+error_envelope:
+  format: custom-json-envelope
+  fields: [message, Message, detail]
+  see: errors/fama-error-codes.yml
+rate_limit_signaling:
+  limit: 100/minute per token
+  exceeded_status: 429
+  headers_documented: false
+  see: rate-limits/fama-rate-limits.yml
+content_type: application/json

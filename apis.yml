@@ -1,25 +1,123 @@
 aid: fama
 name: Fama
-description: Fama is a company surfaced as a portfolio company of bullpen-capital and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Fama is an AI-powered social media and online screening platform for employment
+  decisions. Its REST API lets HR platforms and background-screening providers submit
+  candidate checks and retrieve behavioral findings — flagged posts, web content, and
+  social profiles — mapped to workplace-misconduct categories across 30+ languages while
+  filtering out protected-class information for EEOC/FCRA-aligned adjudication. Reports are
+  delivered via completion callbacks or polling as JSON or a signed PDF, powering
+  pre-employment screening (Fama Plus), comprehensive candidate assessment (Fama 360), and
+  ongoing employee monitoring (Fama Pulse).
 url: https://raw.githubusercontent.com/api-evangelist/fama/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/63ea1ecaf41aeda5d5045103/6622b457a4c9d4fde1e2a424_Fama%20Open%20Graph%20Image%202%201200%20x%20630.svg
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - bullpen-capital
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: active
+x-tier-reason: public-api-enriched
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Employment Screening
+- Background Checks
+- Human Resources
+- Social Media
+- Risk
+- Compliance
+- Artificial Intelligence
+apis:
+- name: Fama REST API
+  description: >-
+    v2 REST API for submitting candidate screening checks and retrieving report
+    findings (person, profiles, posts, web content, summary, and signed PDF).
+    Bearer-token auth; report completion via HTTP callback or polling.
+  humanURL: https://developer.fama.io/reference/fama-rest-api
+  baseURL: https://public-api.fama.io
+  properties:
+  - type: Documentation
+    url: https://developer.fama.io
+  - type: APIReference
+    url: https://developer.fama.io/reference/fama-rest-api
+  - type: Authentication
+    url: authentication/fama-authentication.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DeveloperPortal
+  url: https://developer.fama.io
+- type: Documentation
+  url: https://developer.fama.io
+- type: APIReference
+  url: https://developer.fama.io/reference/fama-rest-api
+- type: GettingStarted
+  url: https://developer.fama.io/reference/api-token
+- type: Support
+  url: https://fama.io/contact
+- type: Blog
+  url: https://fama.io/blog
+- type: Pricing
+  url: https://fama.io/pricing
+- type: SignUp
+  url: https://app.fama.io
+- type: PrivacyPolicy
+  url: https://fama.io/privacy-policy
+- type: StatusPage
+  url: https://status.fama.io
+- type: LLMsTxt
+  url: llms/fama-llms.txt
+- type: Authentication
+  url: authentication/fama-authentication.yml
+- type: RateLimits
+  url: rate-limits/fama-rate-limits.yml
+- type: ErrorCatalog
+  url: errors/fama-error-codes.yml
+- type: Conventions
+  url: conventions/fama-conventions.yml
+- type: Lifecycle
+  url: lifecycle/fama-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/fama-lifecycle.yml
+- type: Webhooks
+  url: asyncapi/fama-webhooks.yml
+- type: Sandbox
+  url: sandbox/fama-sandbox.yml
+- type: MCPServer
+  url: mcp/fama-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/fama-data-model.yml
+- type: Conformance
+  url: conformance/fama-conformance.yml
+- type: Compliance
+  url: https://trust.fama.io/
+- type: TrustCenter
+  url: security/fama-trust-center.yml
+- type: DomainSecurity
+  url: security/fama-domain-security.yml
 - type: Website
   url: https://fama.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
