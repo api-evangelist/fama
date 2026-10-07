@@ -1,0 +1,32 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://fama.io/pricing
+sources:
+- https://fama.io/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: usage-other
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+published: true
+note: Screening report pricing page; only single-report price is numeric, multi-report is sales-contact.
+plan_count: 2
+currency: USD
+plans:
+- name: Single Report
+  price_text: just $34.99 with a Fama Essential report
+  price: 34.99
+  currency: USD
+  period: per-use
+  unit: report (1 candidate)
+  included_quota: Screen 1 candidate; 10,000 online sources plus X for 8 types of misconduct
+- name: Multiple Reports
+  price_text: Talk to Sales
+  period: none
+  included_quota: Screen multiple candidates at once; 10,000+ sources; ATS/HR integration
