@@ -1,0 +1,140 @@
+generated: '2026-10-14'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/fama-external-interface-openapi.yml
+- openapi/fama-public-api-openapi.yml
+vocabulary:
+  name: Fama Domain Vocabulary
+  description: 'Terms declared by Fama''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions. Derived,
+    not authored.'
+  version: '2026-10-14'
+  terms:
+  - term: PublicAPI
+    definition: endpoints intended for direct use
+    tags:
+    - Resource Group
+    source: openapi/fama-external-interface-openapi.yml
+  - term: Address
+    definition: 'Object declared by the contract with fields: line1, line2, city, state, zip, country, start_date, end_date.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/Address
+  - term: CheckRequest
+    definition: 'Object declared by the contract with fields: person, check_types, profiles, rerun_from_parent_uuid, qa, recur.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/CheckRequest
+  - term: CheckResponse
+    definition: 'Object declared by the contract with fields: report_uuid, message.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/CheckResponse
+  - term: EmailType
+    definition: An enumeration.
+    tags:
+    - Enumeration
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/EmailType
+  - term: HTTPValidationError
+    definition: 'Object declared by the contract with fields: detail.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/HTTPValidationError
+  - term: Identification
+    definition: 'Object declared by the contract with fields: unique_id, description, start_date, end_date.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/Identification
+  - term: InstantFitFields
+    definition: 'Object declared by the contract with fields: job_title, job_requisition_number, reference, assignment, writing_sample.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/InstantFitFields
+  - term: MisconductFields
+    definition: 'Object declared by the contract with fields: custom_id, assessment_id, job_title.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/MisconductFields
+  - term: Name
+    definition: 'Object declared by the contract with fields: prefix, first_name, middle_name, last_name, suffix, name_type.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/Name
+  - term: NameType
+    definition: An enumeration.
+    tags:
+    - Enumeration
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/NameType
+  - term: PhoneType
+    definition: An enumeration.
+    tags:
+    - Enumeration
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/PhoneType
+  - term: RecurSchedule
+    definition: 'Object declared by the contract with fields: schedule_type, schedule_value.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/RecurSchedule
+  - term: ScheduleType
+    definition: An enumeration.
+    tags:
+    - Enumeration
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/ScheduleType
+  - term: ValidationError
+    definition: 'Object declared by the contract with fields: loc, msg, type.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/ValidationError
+  - term: CheckTypeRequest
+    definition: 'Object declared by the contract with fields: check_type_uuid, behavior_kit_uuid, custom_fields.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/external_interface__public_api__interfaces__CheckTypeRequest
+  - term: Degree
+    definition: 'Object declared by the contract with fields: name, educator, country, start_date, end_date.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/external_interface__public_api__interfaces__Degree
+  - term: Email
+    definition: 'Object declared by the contract with fields: address, email_type.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/external_interface__public_api__interfaces__Email
+  - term: Job
+    definition: 'Object declared by the contract with fields: title, employer, country, start_date, end_date.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/external_interface__public_api__interfaces__Job
+  - term: Person
+    definition: 'Object declared by the contract with fields: person_uuid, birth_date, addresses, degrees, emails, identifications, jobs, names,
+      phones.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/external_interface__public_api__interfaces__Person
+  - term: Phone
+    definition: 'Object declared by the contract with fields: raw_number, start_date, end_date, phone_type.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/external_interface__public_api__interfaces__Phone
+  - term: CheckStatus
+    definition: 'Object declared by the contract with fields: report_uuid, client_report_id, name, company_uuid, parent_company_uuid, check_type_uuid,
+      behavior_kit_uuid, status, created_at, finished_at.'
+    tags:
+    - Object
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/CheckStatus
+  - term: Status
+    definition: An enumeration.
+    tags:
+    - Enumeration
+    source: openapi/fama-external-interface-openapi.yml#/components/schemas/fama_interfaces__workflow_dal__Status
+  - term: Report
+    definition: 'Resource group in the contract; its operation GET /my_companies: Retrieve the companies available to your account, filter results
+      by company name, and use pagination to page through large result sets.'
+    tags:
+    - Resource Group
+    source: openapi/fama-external-interface-openapi.yml
+  - term: Public Endpoints
+    definition: 'Resource group in the contract; its operation GET /api/checkTypes: Get Check Types'
+    tags:
+    - Resource Group
+    source: openapi/fama-public-api-openapi.yml

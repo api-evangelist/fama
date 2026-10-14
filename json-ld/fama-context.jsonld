@@ -1,0 +1,287 @@
+{
+  "@context": {
+    "@vocab": "https://fama.io/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "fama": "https://fama.io/schema#",
+    "Address": "fama:Address",
+    "line1": {
+      "@id": "fama:line1",
+      "@type": "xsd:string"
+    },
+    "line2": {
+      "@id": "fama:line2",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "fama:city",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "fama:state",
+      "@type": "xsd:string"
+    },
+    "zip": {
+      "@id": "fama:zip",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "fama:country",
+      "@type": "xsd:string"
+    },
+    "start_date": {
+      "@id": "fama:start_date",
+      "@type": "xsd:date"
+    },
+    "end_date": {
+      "@id": "fama:end_date",
+      "@type": "xsd:date"
+    },
+    "CheckRequest": "fama:CheckRequest",
+    "person": {
+      "@id": "fama:person",
+      "@type": "@id"
+    },
+    "check_types": {
+      "@id": "fama:check_types",
+      "@container": "@list"
+    },
+    "profiles": {
+      "@id": "fama:profiles",
+      "@container": "@list"
+    },
+    "rerun_from_parent_uuid": {
+      "@id": "fama:rerun_from_parent_uuid",
+      "@type": "xsd:string"
+    },
+    "qa": {
+      "@id": "fama:qa",
+      "@type": "xsd:boolean"
+    },
+    "recur": {
+      "@id": "fama:recur",
+      "@type": "@id"
+    },
+    "CheckResponse": "fama:CheckResponse",
+    "report_uuid": {
+      "@id": "fama:report_uuid",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "fama:message",
+      "@type": "xsd:string"
+    },
+    "EmailType": "fama:EmailType",
+    "HTTPValidationError": "fama:HTTPValidationError",
+    "detail": {
+      "@id": "fama:detail",
+      "@container": "@list"
+    },
+    "Identification": "fama:Identification",
+    "unique_id": {
+      "@id": "fama:unique_id",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "fama:description",
+      "@type": "xsd:string"
+    },
+    "InstantFitFields": "fama:InstantFitFields",
+    "job_title": {
+      "@id": "fama:job_title",
+      "@type": "xsd:string"
+    },
+    "job_requisition_number": {
+      "@id": "fama:job_requisition_number",
+      "@type": "xsd:string"
+    },
+    "reference": {
+      "@id": "fama:reference",
+      "@type": "xsd:string"
+    },
+    "assignment": {
+      "@id": "fama:assignment",
+      "@type": "xsd:string"
+    },
+    "writing_sample": {
+      "@id": "fama:writing_sample",
+      "@type": "xsd:string"
+    },
+    "MisconductFields": "fama:MisconductFields",
+    "custom_id": {
+      "@id": "fama:custom_id",
+      "@type": "xsd:string"
+    },
+    "assessment_id": {
+      "@id": "fama:assessment_id",
+      "@type": "xsd:string"
+    },
+    "Name": "fama:Name",
+    "prefix": {
+      "@id": "fama:prefix",
+      "@type": "xsd:string"
+    },
+    "first_name": {
+      "@id": "fama:first_name",
+      "@type": "xsd:string"
+    },
+    "middle_name": {
+      "@id": "fama:middle_name",
+      "@type": "xsd:string"
+    },
+    "last_name": {
+      "@id": "fama:last_name",
+      "@type": "xsd:string"
+    },
+    "suffix": {
+      "@id": "fama:suffix",
+      "@type": "xsd:string"
+    },
+    "name_type": {
+      "@id": "fama:name_type"
+    },
+    "NameType": "fama:NameType",
+    "PhoneType": "fama:PhoneType",
+    "RecurSchedule": "fama:RecurSchedule",
+    "schedule_type": {
+      "@id": "fama:schedule_type",
+      "@type": "@id"
+    },
+    "schedule_value": {
+      "@id": "fama:schedule_value",
+      "@type": "xsd:string"
+    },
+    "ScheduleType": "fama:ScheduleType",
+    "ValidationError": "fama:ValidationError",
+    "loc": {
+      "@id": "fama:loc",
+      "@container": "@list"
+    },
+    "msg": {
+      "@id": "fama:msg",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "fama:type",
+      "@type": "xsd:string"
+    },
+    "external_interface__public_api__interfaces__CheckTypeRequest": "fama:external_interface__public_api__interfaces__CheckTypeRequest",
+    "check_type_uuid": {
+      "@id": "fama:check_type_uuid",
+      "@type": "xsd:string"
+    },
+    "behavior_kit_uuid": {
+      "@id": "fama:behavior_kit_uuid",
+      "@type": "xsd:string"
+    },
+    "custom_fields": {
+      "@id": "fama:custom_fields"
+    },
+    "external_interface__public_api__interfaces__Degree": "fama:external_interface__public_api__interfaces__Degree",
+    "name": {
+      "@id": "fama:name",
+      "@type": "xsd:string"
+    },
+    "educator": {
+      "@id": "fama:educator",
+      "@type": "xsd:string"
+    },
+    "external_interface__public_api__interfaces__Email": "fama:external_interface__public_api__interfaces__Email",
+    "address": {
+      "@id": "fama:address",
+      "@type": "xsd:string"
+    },
+    "email_type": {
+      "@id": "fama:email_type"
+    },
+    "external_interface__public_api__interfaces__Job": "fama:external_interface__public_api__interfaces__Job",
+    "title": {
+      "@id": "fama:title",
+      "@type": "xsd:string"
+    },
+    "employer": {
+      "@id": "fama:employer",
+      "@type": "xsd:string"
+    },
+    "external_interface__public_api__interfaces__Person": "fama:external_interface__public_api__interfaces__Person",
+    "person_uuid": {
+      "@id": "fama:person_uuid",
+      "@type": "xsd:string"
+    },
+    "birth_date": {
+      "@id": "fama:birth_date",
+      "@type": "xsd:string"
+    },
+    "addresses": {
+      "@id": "fama:addresses",
+      "@container": "@list"
+    },
+    "degrees": {
+      "@id": "fama:degrees",
+      "@container": "@list"
+    },
+    "emails": {
+      "@id": "fama:emails",
+      "@container": "@list"
+    },
+    "identifications": {
+      "@id": "fama:identifications",
+      "@container": "@list"
+    },
+    "jobs": {
+      "@id": "fama:jobs",
+      "@container": "@list"
+    },
+    "names": {
+      "@id": "fama:names",
+      "@container": "@list"
+    },
+    "phones": {
+      "@id": "fama:phones",
+      "@container": "@list"
+    },
+    "external_interface__public_api__interfaces__Phone": "fama:external_interface__public_api__interfaces__Phone",
+    "raw_number": {
+      "@id": "fama:raw_number",
+      "@type": "xsd:string"
+    },
+    "phone_type": {
+      "@id": "fama:phone_type"
+    },
+    "CheckStatus": "fama:CheckStatus",
+    "client_report_id": {
+      "@id": "fama:client_report_id",
+      "@type": "xsd:string"
+    },
+    "company_uuid": {
+      "@id": "fama:company_uuid",
+      "@type": "xsd:string"
+    },
+    "parent_company_uuid": {
+      "@id": "fama:parent_company_uuid",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "fama:status",
+      "@type": "@id"
+    },
+    "created_at": {
+      "@id": "fama:created_at",
+      "@type": "xsd:dateTime"
+    },
+    "finished_at": {
+      "@id": "fama:finished_at",
+      "@type": "xsd:dateTime"
+    },
+    "fama_interfaces__workflow_dal__Status": "fama:fama_interfaces__workflow_dal__Status"
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Fama API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Fama's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-14) from openapi/fama-external-interface-openapi.yml, openapi/fama-public-api-openapi.yml.",
+  "dcterms:created": "2026-10-14",
+  "dcterms:source": [
+    "openapi/fama-external-interface-openapi.yml",
+    "openapi/fama-public-api-openapi.yml"
+  ]
+}

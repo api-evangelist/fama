@@ -1,6 +1,7 @@
 generated: '2026-07-19'
 method: searched
 source: https://developer.fama.io/reference/rate-limits
+name: Fama API Rate Limits
 docs: https://developer.fama.io/reference/rate-limits
 scope: per-api-token
 rate_limits:

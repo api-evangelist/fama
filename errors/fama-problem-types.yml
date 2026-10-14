@@ -1,0 +1,21 @@
+generated: '2026-10-14'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/fama-external-interface-openapi.yml
+- openapi/fama-public-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: HTTPValidationError
+coverage:
+  operations: 26
+  statuses_declared: 1
+problems:
+- status: 422
+  title: Unprocessable Content
+  description: Validation Error
+  operations: 26
+  media_types:
+  - application/json
+  schema: HTTPValidationError

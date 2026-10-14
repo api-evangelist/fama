@@ -1,15 +1,15 @@
 aid: fama
+
 name: Fama
-description: >-
-  Fama is an AI-powered social media and online screening platform for employment
-  decisions. Its REST API lets HR platforms and background-screening providers submit
-  candidate checks and retrieve behavioral findings — flagged posts, web content, and
-  social profiles — mapped to workplace-misconduct categories across 30+ languages while
-  filtering out protected-class information for EEOC/FCRA-aligned adjudication. Reports are
-  delivered via completion callbacks or polling as JSON or a signed PDF, powering
-  pre-employment screening (Fama Plus), comprehensive candidate assessment (Fama 360), and
-  ongoing employee monitoring (Fama Pulse).
+
+description: Fama is an AI-powered social media and online screening platform for employment decisions. Its REST API lets HR platforms and background-screening
+  providers submit candidate checks and retrieve behavioral findings — flagged posts, web content, and social profiles — mapped to workplace-misconduct
+  categories across 30+ languages while filtering out protected-class information for EEOC/FCRA-aligned adjudication. Reports are delivered via
+  completion callbacks or polling as JSON or a signed PDF, powering pre-employment screening (Fama Plus), comprehensive candidate assessment (Fama
+  360), and ongoing employee monitoring (Fama Pulse).
+
 url: https://raw.githubusercontent.com/api-evangelist/fama/refs/heads/main/apis.yml
+
 deliveryModel:
   model: saas
   open_source: false
@@ -21,6 +21,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -33,19 +34,32 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
+
 image: https://cdn.prod.website-files.com/63ea1ecaf41aeda5d5045103/6622b457a4c9d4fde1e2a424_Fama%20Open%20Graph%20Image%202%201200%20x%20630.svg
+
 x-type: company
+
 x-source: vc-portfolio
+
 x-backed-by:
 - bullpen-capital
+
 x-tier: active
+
 x-tier-reason: public-api-enriched
+
 specificationVersion: '0.23'
+
 created: '2026-07-17'
+
 modified: '2026-07-19'
+
 x-docs-platform: readme
+
 x-docs-platform-confidence: high
+
 x-docs-platform-checked: 2026-10-03
+
 tags:
 - Company
 - Employment Screening
@@ -55,6 +69,7 @@ tags:
 - Risk Management
 - Compliance
 - Artificial Intelligence
+
 tags_raw:
 - Company
 - Employment Screening
@@ -65,27 +80,34 @@ tags_raw:
 - Compliance
 - Artificial Intelligence
 - Social-Media
-apis:
-- name: Fama REST API
-  description: >-
-    v2 REST API for submitting candidate screening checks and retrieving report
-    findings (person, profiles, posts, web content, summary, and signed PDF).
-    Bearer-token auth; report completion via HTTP callback or polling.
-  humanURL: https://developer.fama.io/reference/fama-rest-api
-  baseURL: https://public-api.fama.io
-  properties:
-  - type: Documentation
-    url: https://developer.fama.io
-  - type: APIReference
-    url: https://developer.fama.io/reference/fama-rest-api
-  - type: Authentication
-    url: authentication/fama-authentication.yml
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: AgenticAccess
+  url: agentic-access/fama-agentic-access.yml
+- type: Spectral
+  url: rules/fama-rules.yml
+- type: JSONLD
+  url: json-ld/fama-context.jsonld
+- type: Vocabulary
+  url: vocabulary/fama-vocabulary.yml
+- type: ErrorCatalog
+  url: errors/fama-problem-types.yml
+- type: WellKnown
+  url: well-known/fama-well-known.yml
+- type: Hosts
+  url: hosts/fama-hosts.yml
+- type: Vendors
+  url: vendors/fama-vendors.yml
+- type: TermsOfService
+  url: https://fama.io/terms-and-conditions
+- type: Newsroom
+  url: https://fama.io/press
 - type: Plans
   url: plans/fama-plans-pricing.yml
 - type: DeveloperPortal
@@ -128,7 +150,9 @@ common:
   url: sandbox/fama-sandbox.yml
 - type: X-MCPServerCandidate
   url: mcp/fama-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published
+    API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting
+    the artifact-type surfaces with a server that does not exist.'
 - type: AgentSkill
   url: skills/_index.yml
 - type: DataModel
@@ -143,8 +167,56 @@ common:
   url: security/fama-domain-security.yml
 - type: Website
   url: https://fama.io
+
+apis:
+- name: Fama REST API
+  description: v2 REST API for submitting candidate screening checks and retrieving report findings (person, profiles, posts, web content, summary,
+    and signed PDF). Bearer-token auth; report completion via HTTP callback or polling.
+  humanURL: https://developer.fama.io/reference/fama-rest-api
+  baseURL: https://public-api.fama.io
+  properties:
+  - type: Documentation
+    url: https://developer.fama.io
+  - type: APIReference
+    url: https://developer.fama.io/reference/fama-rest-api
+  - type: Authentication
+    url: authentication/fama-authentication.yml
+  aid: fama:fama-rest-api
+- aid: fama:fama-external-interface
+  name: Fama Public API
+  description: endpoints intended for direct use
+  humanURL: https://developer.fama.io/reference/fama-rest-api
+  baseURL: https://public-api.fama.io
+  tags:
+  - PublicAPI
+  properties:
+  - type: OpenAPI
+    url: openapi/fama-external-interface-openapi.yml
+  - type: JSONSchema
+    url: json-schema/fama-check-status-schema.json
+  - type: JSONSchema
+    url: json-schema/fama-check-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fama-check-response-schema.json
+- aid: fama:fama-public-api
+  name: Fama Public API
+  description: The Public API from Fama — 11 operation(s) for public.
+  humanURL: https://developer.fama.io/reference/fama-rest-api
+  baseURL: https://public-api.fama.io
+  tags:
+  - Public
+  properties:
+  - type: OpenAPI
+    url: openapi/fama-public-api-openapi.yml
+
 x-enrichment:
   date: '2026-07-19'
   status: backfilled
   pass: local-v1
   note: backfilled from .gitignore signal + verified work evidence
+
+x-readme-harvest:
+  date: '2026-10-14'
+  ops: 26
+  tool: harvest-readme-openapi.py
+  portal: https://developer.fama.io

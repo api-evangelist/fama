@@ -1,0 +1,3899 @@
+[
+ {
+  "page": "https://developer.fama.io/reference/get_user_api_user_get.md",
+  "definition": {
+   "openapi": "3.0.2",
+   "info": {
+    "title": "Fama Public API",
+    "description": "Exchanges existing \"Core\" Basic Auth for an \"Ossa\" API token for use with Public API endpoints.  \nThis is typically only useful for API customers migrating from the deprecated \"Core\" platform. It will yield an API token for use in bearer Authorization header.\nNew and Migrated API users can simply retrieve their API token from their [Company Page](https://v3-ui.sandbox.service.fama.io/#/companies) in the Ossa Application.  \nFor access to our sandbox environment, please [request sandbox access](https://developer.fama.io/sandbox/request-sandbox-access/).\n",
+    "version": "dev",
+    "contact": {
+     "url": "https://fama.readme.io",
+     "email": "admin@developer.fama.io"
+    }
+   },
+   "servers": [
+    {
+     "url": "https://api.sandbox.service.fama.io",
+     "description": "Sandbox server for testing"
+    }
+   ],
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "paths": {
+    "/api/user": {
+     "get": {
+      "tags": [
+       "Public Endpoints"
+      ],
+      "summary": "Get User",
+      "operationId": "get_user_api_user_get",
+      "responses": {
+       "200": {
+        "description": "Successful Response",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "User",
+           "required": [
+            "id",
+            "username",
+            "company",
+            "email",
+            "companyId",
+            "clearance",
+            "deferredClearance",
+            "isSegregated",
+            "emailList",
+            "contactEmail",
+            "intercomEnabled"
+           ],
+           "type": "object",
+           "properties": {
+            "id": {
+             "title": "Id",
+             "type": "string",
+             "format": "uuid"
+            },
+            "username": {
+             "title": "Username",
+             "type": "string"
+            },
+            "password": {
+             "title": "Password",
+             "type": "string"
+            },
+            "company": {
+             "title": "Company",
+             "type": "string"
+            },
+            "email": {
+             "title": "Email",
+             "type": "string"
+            },
+            "companyId": {
+             "title": "Companyid",
+             "type": "string",
+             "format": "uuid"
+            },
+            "clearance": {
+             "title": "Clearance",
+             "type": "array",
+             "items": {
+              "title": "ClearanceList",
+              "required": [
+               "clearance"
+              ],
+              "type": "object",
+              "properties": {
+               "clearance": {
+                "title": "Clearance",
+                "enum": [
+                 "ADMIN",
+                 "USER",
+                 "VIEWER",
+                 "CLIENT_RATER",
+                 "RATER",
+                 "SUPERADMIN"
+                ],
+                "type": "string",
+                "description": "An enumeration."
+               }
+              }
+             }
+            },
+            "deferredClearance": {
+             "type": "array",
+             "items": {
+              "title": "Clearance",
+              "enum": [
+               "ADMIN",
+               "USER",
+               "VIEWER",
+               "CLIENT_RATER",
+               "RATER",
+               "SUPERADMIN"
+              ],
+              "type": "string",
+              "description": "An enumeration."
+             }
+            },
+            "isSegregated": {
+             "title": "Issegregated",
+             "type": "boolean"
+            },
+            "emailList": {
+             "title": "Emaillist",
+             "type": "array",
+             "items": {
+              "title": "Email",
+              "required": [
+               "email"
+              ],
+              "type": "object",
+              "properties": {
+               "email": {
+                "title": "Email",
+                "type": "string"
+               }
+              }
+             }
+            },
+            "contactEmail": {
+             "title": "Email",
+             "required": [
+              "email"
+             ],
+             "type": "object",
+             "properties": {
+              "email": {
+               "title": "Email",
+               "type": "string"
+              }
+             }
+            },
+            "createdBySSO": {
+             "title": "Createdbysso",
+             "type": "boolean",
+             "default": false
+            },
+            "intercomEnabled": {
+             "title": "Intercomenabled",
+             "type": "boolean"
+            }
+           }
+          }
+         }
+        }
+       },
+       "422": {
+        "description": "Validation Error",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "HTTPValidationError",
+           "type": "object",
+           "properties": {
+            "detail": {
+             "title": "Detail",
+             "type": "array",
+             "items": {
+              "title": "ValidationError",
+              "required": [
+               "loc",
+               "msg",
+               "type"
+              ],
+              "type": "object",
+              "properties": {
+               "loc": {
+                "title": "Location",
+                "type": "array",
+                "items": {
+                 "anyOf": [
+                  {
+                   "type": "string"
+                  },
+                  {
+                   "type": "integer"
+                  }
+                 ]
+                }
+               },
+               "msg": {
+                "title": "Message",
+                "type": "string"
+               },
+               "type": {
+                "title": "Error Type",
+                "type": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developer.fama.io/reference/get_company_api_company_get.md",
+  "definition": {
+   "openapi": "3.0.2",
+   "info": {
+    "title": "Fama Public API",
+    "description": "Exchanges existing \"Core\" Basic Auth for an \"Ossa\" API token for use with Public API endpoints.  \nThis is typically only useful for API customers migrating from the deprecated \"Core\" platform. It will yield an API token for use in bearer Authorization header.\nNew and Migrated API users can simply retrieve their API token from their [Company Page](https://v3-ui.sandbox.service.fama.io/#/companies) in the Ossa Application.  \nFor access to our sandbox environment, please [request sandbox access](https://developer.fama.io/sandbox/request-sandbox-access/).\n",
+    "version": "dev",
+    "contact": {
+     "url": "https://fama.readme.io",
+     "email": "admin@developer.fama.io"
+    }
+   },
+   "servers": [
+    {
+     "url": "https://api.sandbox.service.fama.io",
+     "description": "Sandbox server for testing"
+    }
+   ],
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "paths": {
+    "/api/company": {
+     "get": {
+      "tags": [
+       "Public Endpoints"
+      ],
+      "summary": "Get Company",
+      "operationId": "get_company_api_company_get",
+      "parameters": [
+       {
+        "required": false,
+        "schema": {
+         "title": "Username",
+         "type": "string"
+        },
+        "name": "username",
+        "in": "query"
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "Successful Response",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "Company",
+           "required": [
+            "uuid",
+            "name",
+            "callbacks",
+            "admins",
+            "lookbackWindow"
+           ],
+           "type": "object",
+           "properties": {
+            "uuid": {
+             "title": "Uuid",
+             "type": "string",
+             "format": "uuid"
+            },
+            "name": {
+             "title": "Name",
+             "type": "string"
+            },
+            "callbacks": {
+             "title": "Callbacks",
+             "type": "array",
+             "items": {
+              "type": "string"
+             }
+            },
+            "callbackHeaders": {
+             "title": "Callbackheaders",
+             "type": "object",
+             "default": {}
+            },
+            "callbackApiUrl": {
+             "title": "Callbackapiurl",
+             "type": "string",
+             "default": ""
+            },
+            "qaCallbackApiUrl": {
+             "title": "Qacallbackapiurl",
+             "type": "string",
+             "default": ""
+            },
+            "admins": {
+             "title": "Admins",
+             "type": "array",
+             "items": {
+              "title": "Admin",
+              "required": [
+               "value"
+              ],
+              "type": "object",
+              "properties": {
+               "value": {
+                "title": "Value",
+                "type": "string"
+               }
+              }
+             }
+            },
+            "notes": {
+             "title": "Notes",
+             "type": "string",
+             "default": ""
+            },
+            "intercomEnabled": {
+             "title": "Intercomenabled",
+             "type": "boolean",
+             "default": false
+            },
+            "lookbackWindow": {
+             "title": "Lookbackwindow",
+             "type": "integer"
+            },
+            "locationList": {
+             "title": "Locationlist",
+             "type": "array",
+             "items": {
+              "type": "string"
+             },
+             "default": []
+            },
+            "emailList": {
+             "title": "Emaillist",
+             "type": "array",
+             "items": {
+              "type": "string"
+             },
+             "default": []
+            },
+            "phoneList": {
+             "title": "Phonelist",
+             "type": "array",
+             "items": {
+              "type": "string"
+             },
+             "default": []
+            },
+            "contactEmail": {
+             "title": "Contactemail",
+             "type": "string",
+             "default": ""
+            },
+            "keywords": {
+             "title": "Keywords",
+             "type": "array",
+             "items": {
+              "type": "string"
+             },
+             "default": []
+            },
+            "stemmableKeywords": {
+             "title": "Stemmablekeywords",
+             "type": "array",
+             "items": {
+              "type": "string"
+             },
+             "default": []
+            },
+            "thresholds": {
+             "title": "Thresholds",
+             "type": "array",
+             "items": {
+              "title": "Threshold",
+              "required": [
+               "thresholdType",
+               "count",
+               "lookbackWindow",
+               "keywordGroup",
+               "sensitivityType",
+               "rateableType",
+               "percentage"
+              ],
+              "type": "object",
+              "properties": {
+               "thresholdType": {
+                "title": "ThresholdType",
+                "enum": [
+                 "TOTAL_COUNT",
+                 "BEHAVIOR_COUNT",
+                 "BEHAVIOR_PERCENTAGE",
+                 "TOTAL_BEHAVIOR_COUNT",
+                 "TOTAL_BEHAVIOR_PERCENTAGE",
+                 "TOTAL_PERCENTAGE",
+                 "KEYWORD_GROUP_COUNT",
+                 "KEYWORD_GROUP_PERCENTAGE"
+                ],
+                "type": "string",
+                "description": "An enumeration."
+               },
+               "count": {
+                "title": "Count",
+                "type": "integer"
+               },
+               "lookbackWindow": {
+                "title": "Lookbackwindow",
+                "type": "integer"
+               },
+               "keywordGroup": {
+                "title": "Keywordgroup",
+                "type": "string"
+               },
+               "sensitivityType": {
+                "title": "SensitivityType",
+                "enum": [
+                 "ALCOHOL",
+                 "BIGOTRY",
+                 "CANNABIS",
+                 "CRIMINAL",
+                 "COMMUNITY",
+                 "DISENGAGEMENT",
+                 "DONATION",
+                 "HARASSMENT",
+                 "HELPING_OTHERS",
+                 "INTOLERANCE",
+                 "LANGUAGE",
+                 "OTHER_DRUGS",
+                 "PROTECTING_OTHERS",
+                 "SEX",
+                 "SEXISM",
+                 "THREAT",
+                 "VIOLENCE",
+                 "VOLUNTEERING"
+                ],
+                "type": "string",
+                "description": "An enumeration."
+               },
+               "rateableType": {
+                "title": "RateableType",
+                "enum": [
+                 "ARTICLE",
+                 "ORIGINAL",
+                 "NON_ORIGINAL",
+                 "ANY"
+                ],
+                "type": "string",
+                "description": "An enumeration."
+               },
+               "percentage": {
+                "title": "Percentage",
+                "type": "number"
+               }
+              }
+             },
+             "default": []
+            },
+            "mediaEntries": {
+             "title": "Mediaentries",
+             "type": "array",
+             "items": {
+              "type": "string"
+             },
+             "default": []
+            },
+            "companyType": {
+             "title": "Companytype",
+             "type": "string",
+             "default": "FULL"
+            },
+            "userCount": {
+             "title": "Usercount",
+             "type": "integer",
+             "default": 0
+            },
+            "sensitivities": {
+             "title": "Sensitivities",
+             "type": "array",
+             "items": {
+              "title": "Sensitivity",
+              "required": [
+               "sensitivityType",
+               "flagged"
+              ],
+              "type": "object",
+              "properties": {
+               "sensitivityType": {
+                "title": "Sensitivitytype",
+                "type": "string"
+               },
+               "flagged": {
+                "title": "Flagged",
+                "type": "boolean"
+               }
+              }
+             },
+             "default": []
+            },
+            "companyPermissions": {
+             "title": "Companypermissions",
+             "type": "array",
+             "items": {
+              "title": "Permission",
+              "required": [
+               "permission",
+               "subPermission"
+              ],
+              "type": "object",
+              "properties": {
+               "permission": {
+                "title": "Permission",
+                "type": "string"
+               },
+               "subPermission": {
+                "title": "Subpermission",
+                "type": "string"
+               }
+              }
+             },
+             "default": []
+            },
+            "taskTimers": {
+             "title": "Tasktimers",
+             "type": "object",
+             "default": {}
+            },
+            "lastViewableDate": {
+             "title": "Lastviewabledate",
+             "type": "integer",
+             "default": 0
+            },
+            "segregateUsers": {
+             "title": "Segregateusers",
+             "type": "boolean",
+             "default": false
+            },
+            "turnaroundTimeHours": {
+             "title": "Turnaroundtimehours",
+             "type": "integer",
+             "default": 0
+            },
+            "newsProbability": {
+             "title": "Newsprobability",
+             "type": "boolean",
+             "default": false
+            },
+            "overdueNotificationEnabled": {
+             "title": "Overduenotificationenabled",
+             "type": "boolean",
+             "default": false
+            },
+            "contractId": {
+             "title": "Contractid",
+             "type": "string",
+             "default": "00000000-0000-0000-0000-000000000000"
+            }
+           }
+          }
+         }
+        }
+       },
+       "422": {
+        "description": "Validation Error",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "HTTPValidationError",
+           "type": "object",
+           "properties": {
+            "detail": {
+             "title": "Detail",
+             "type": "array",
+             "items": {
+              "title": "ValidationError",
+              "required": [
+               "loc",
+               "msg",
+               "type"
+              ],
+              "type": "object",
+              "properties": {
+               "loc": {
+                "title": "Location",
+                "type": "array",
+                "items": {
+                 "anyOf": [
+                  {
+                   "type": "string"
+                  },
+                  {
+                   "type": "integer"
+                  }
+                 ]
+                }
+               },
+               "msg": {
+                "title": "Message",
+                "type": "string"
+               },
+               "type": {
+                "title": "Error Type",
+                "type": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developer.fama.io/reference/get_check_types_api_checktypes_get.md",
+  "definition": {
+   "openapi": "3.0.2",
+   "info": {
+    "title": "Fama Public API",
+    "description": "Exchanges existing \"Core\" Basic Auth for an \"Ossa\" API token for use with Public API endpoints.  \nThis is typically only useful for API customers migrating from the deprecated \"Core\" platform. It will yield an API token for use in bearer Authorization header.\nNew and Migrated API users can simply retrieve their API token from their [Company Page](https://v3-ui.sandbox.service.fama.io/#/companies) in the Ossa Application.  \nFor access to our sandbox environment, please [request sandbox access](https://developer.fama.io/sandbox/request-sandbox-access/).\n",
+    "version": "dev",
+    "contact": {
+     "url": "https://fama.readme.io",
+     "email": "admin@developer.fama.io"
+    }
+   },
+   "servers": [
+    {
+     "url": "https://api.sandbox.service.fama.io",
+     "description": "Sandbox server for testing"
+    }
+   ],
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "paths": {
+    "/api/checkTypes": {
+     "get": {
+      "tags": [
+       "Public Endpoints"
+      ],
+      "summary": "Get Check Types",
+      "operationId": "get_check_types_api_checkTypes_get",
+      "responses": {
+       "200": {
+        "description": "Successful Response",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "Response Get Check Types Api Checktypes Get",
+           "type": "array",
+           "items": {
+            "title": "CheckType",
+            "required": [
+             "uuid",
+             "name",
+             "behaviors",
+             "lookbackMonths",
+             "displayImages",
+             "review",
+             "itemSources"
+            ],
+            "type": "object",
+            "properties": {
+             "uuid": {
+              "title": "Uuid",
+              "type": "string",
+              "format": "uuid"
+             },
+             "name": {
+              "title": "Name",
+              "type": "string"
+             },
+             "behaviors": {
+              "title": "Behaviors",
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             },
+             "lookbackMonths": {
+              "title": "Lookbackmonths",
+              "type": "integer"
+             },
+             "displayImages": {
+              "title": "Displayimages",
+              "type": "boolean"
+             },
+             "review": {
+              "title": "Review",
+              "type": "boolean"
+             },
+             "itemSources": {
+              "title": "Itemsources",
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       },
+       "422": {
+        "description": "Validation Error",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "HTTPValidationError",
+           "type": "object",
+           "properties": {
+            "detail": {
+             "title": "Detail",
+             "type": "array",
+             "items": {
+              "title": "ValidationError",
+              "required": [
+               "loc",
+               "msg",
+               "type"
+              ],
+              "type": "object",
+              "properties": {
+               "loc": {
+                "title": "Location",
+                "type": "array",
+                "items": {
+                 "anyOf": [
+                  {
+                   "type": "string"
+                  },
+                  {
+                   "type": "integer"
+                  }
+                 ]
+                }
+               },
+               "msg": {
+                "title": "Message",
+                "type": "string"
+               },
+               "type": {
+                "title": "Error Type",
+                "type": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developer.fama.io/reference/get_flag_kit_all_api_flagkits_all_get.md",
+  "definition": {
+   "openapi": "3.0.2",
+   "info": {
+    "title": "Fama Public API",
+    "description": "Exchanges existing \"Core\" Basic Auth for an \"Ossa\" API token for use with Public API endpoints.  \nThis is typically only useful for API customers migrating from the deprecated \"Core\" platform. It will yield an API token for use in bearer Authorization header.\nNew and Migrated API users can simply retrieve their API token from their [Company Page](https://v3-ui.sandbox.service.fama.io/#/companies) in the Ossa Application.  \nFor access to our sandbox environment, please [request sandbox access](https://developer.fama.io/sandbox/request-sandbox-access/).\n",
+    "version": "dev",
+    "contact": {
+     "url": "https://fama.readme.io",
+     "email": "admin@developer.fama.io"
+    }
+   },
+   "servers": [
+    {
+     "url": "https://api.sandbox.service.fama.io",
+     "description": "Sandbox server for testing"
+    }
+   ],
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "paths": {
+    "/api/flagKits/all": {
+     "get": {
+      "tags": [
+       "Public Endpoints"
+      ],
+      "summary": "Get Flag Kit All",
+      "operationId": "get_flag_kit_all_api_flagKits_all_get",
+      "parameters": [
+       {
+        "required": true,
+        "schema": {
+         "title": "Companyid",
+         "type": "string",
+         "format": "uuid"
+        },
+        "name": "companyId",
+        "in": "query"
+       },
+       {
+        "required": false,
+        "schema": {
+         "title": "Pagenumber",
+         "type": "integer",
+         "default": 0
+        },
+        "name": "pageNumber",
+        "in": "query"
+       },
+       {
+        "required": false,
+        "schema": {
+         "title": "Flagkitsperpage",
+         "type": "integer",
+         "default": 50
+        },
+        "name": "flagKitsPerPage",
+        "in": "query"
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "Successful Response",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "Response Get Flag Kit All Api Flagkits All Get",
+           "type": "array",
+           "items": {
+            "title": "FlagKit",
+            "required": [
+             "name",
+             "id",
+             "companyId",
+             "flagKitId",
+             "deleted"
+            ],
+            "type": "object",
+            "properties": {
+             "name": {
+              "title": "Name",
+              "type": "string"
+             },
+             "id": {
+              "title": "Id",
+              "type": "string"
+             },
+             "thresholds": {
+              "title": "Thresholds",
+              "type": "array",
+              "items": {
+               "title": "Threshold",
+               "required": [
+                "thresholdType",
+                "count",
+                "lookbackWindow",
+                "keywordGroup",
+                "sensitivityType",
+                "rateableType",
+                "percentage"
+               ],
+               "type": "object",
+               "properties": {
+                "thresholdType": {
+                 "title": "ThresholdType",
+                 "enum": [
+                  "TOTAL_COUNT",
+                  "BEHAVIOR_COUNT",
+                  "BEHAVIOR_PERCENTAGE",
+                  "TOTAL_BEHAVIOR_COUNT",
+                  "TOTAL_BEHAVIOR_PERCENTAGE",
+                  "TOTAL_PERCENTAGE",
+                  "KEYWORD_GROUP_COUNT",
+                  "KEYWORD_GROUP_PERCENTAGE"
+                 ],
+                 "type": "string",
+                 "description": "An enumeration."
+                },
+                "count": {
+                 "title": "Count",
+                 "type": "integer"
+                },
+                "lookbackWindow": {
+                 "title": "Lookbackwindow",
+                 "type": "integer"
+                },
+                "keywordGroup": {
+                 "title": "Keywordgroup",
+                 "type": "string"
+                },
+                "sensitivityType": {
+                 "title": "SensitivityType",
+                 "enum": [
+                  "ALCOHOL",
+                  "BIGOTRY",
+                  "CANNABIS",
+                  "CRIMINAL",
+                  "COMMUNITY",
+                  "DISENGAGEMENT",
+                  "DONATION",
+                  "HARASSMENT",
+                  "HELPING_OTHERS",
+                  "INTOLERANCE",
+                  "LANGUAGE",
+                  "OTHER_DRUGS",
+                  "PROTECTING_OTHERS",
+                  "SEX",
+                  "SEXISM",
+                  "THREAT",
+                  "VIOLENCE",
+                  "VOLUNTEERING"
+                 ],
+                 "type": "string",
+                 "description": "An enumeration."
+                },
+                "rateableType": {
+                 "title": "RateableType",
+                 "enum": [
+                  "ARTICLE",
+                  "ORIGINAL",
+                  "NON_ORIGINAL",
+                  "ANY"
+                 ],
+                 "type": "string",
+                 "description": "An enumeration."
+                },
+                "percentage": {
+                 "title": "Percentage",
+                 "type": "number"
+                }
+               }
+              }
+             },
+             "companyId": {
+              "title": "Companyid",
+              "type": "string"
+             },
+             "flagKitId": {
+              "title": "Flagkitid",
+              "type": "string"
+             },
+             "versionId": {
+              "title": "Versionid",
+              "type": "string"
+             },
+             "deleted": {
+              "title": "Deleted",
+              "type": "boolean"
+             },
+             "sensitivities": {
+              "type": "array",
+              "items": {
+               "title": "SensitivityType",
+               "enum": [
+                "ALCOHOL",
+                "BIGOTRY",
+                "CANNABIS",
+                "CRIMINAL",
+                "COMMUNITY",
+                "DISENGAGEMENT",
+                "DONATION",
+                "HARASSMENT",
+                "HELPING_OTHERS",
+                "INTOLERANCE",
+                "LANGUAGE",
+                "OTHER_DRUGS",
+                "PROTECTING_OTHERS",
+                "SEX",
+                "SEXISM",
+                "THREAT",
+                "VIOLENCE",
+                "VOLUNTEERING"
+               ],
+               "type": "string",
+               "description": "An enumeration."
+              }
+             },
+             "keywords": {
+              "title": "Keywords",
+              "type": "array",
+              "items": {
+               "type": "string"
+              },
+              "default": []
+             },
+             "stemmableKeywords": {
+              "title": "Stemmablekeywords",
+              "type": "array",
+              "items": {
+               "type": "string"
+              },
+              "default": []
+             },
+             "keywordGroups": {
+              "title": "Keywordgroups"
+             },
+             "excludedKeywordGroups": {
+              "title": "Excludedkeywordgroups"
+             }
+            }
+           }
+          }
+         }
+        }
+       },
+       "422": {
+        "description": "Validation Error",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "HTTPValidationError",
+           "type": "object",
+           "properties": {
+            "detail": {
+             "title": "Detail",
+             "type": "array",
+             "items": {
+              "title": "ValidationError",
+              "required": [
+               "loc",
+               "msg",
+               "type"
+              ],
+              "type": "object",
+              "properties": {
+               "loc": {
+                "title": "Location",
+                "type": "array",
+                "items": {
+                 "anyOf": [
+                  {
+                   "type": "string"
+                  },
+                  {
+                   "type": "integer"
+                  }
+                 ]
+                }
+               },
+               "msg": {
+                "title": "Message",
+                "type": "string"
+               },
+               "type": {
+                "title": "Error Type",
+                "type": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developer.fama.io/reference/get_person_api_person__report_id__get.md",
+  "definition": {
+   "openapi": "3.0.2",
+   "info": {
+    "title": "Fama Public API",
+    "description": "Exchanges existing \"Core\" Basic Auth for an \"Ossa\" API token for use with Public API endpoints.  \nThis is typically only useful for API customers migrating from the deprecated \"Core\" platform. It will yield an API token for use in bearer Authorization header.\nNew and Migrated API users can simply retrieve their API token from their [Company Page](https://v3-ui.sandbox.service.fama.io/#/companies) in the Ossa Application.  \nFor access to our sandbox environment, please [request sandbox access](https://developer.fama.io/sandbox/request-sandbox-access/).\n",
+    "version": "dev",
+    "contact": {
+     "url": "https://fama.readme.io",
+     "email": "admin@developer.fama.io"
+    }
+   },
+   "servers": [
+    {
+     "url": "https://api.sandbox.service.fama.io",
+     "description": "Sandbox server for testing"
+    }
+   ],
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "paths": {
+    "/api/person/{report_id}": {
+     "get": {
+      "tags": [
+       "Public Endpoints"
+      ],
+      "summary": "Get Person",
+      "operationId": "get_person_api_person__report_id__get",
+      "parameters": [
+       {
+        "required": true,
+        "schema": {
+         "title": "Report Id",
+         "type": "string",
+         "format": "uuid"
+        },
+        "name": "report_id",
+        "in": "path"
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "Successful Response",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "Person",
+           "required": [
+            "uuid",
+            "reportId",
+            "personId",
+            "companyId",
+            "name",
+            "firstName",
+            "lastName",
+            "emailList",
+            "dateModified",
+            "datesProcessing",
+            "personStatus",
+            "reviewStatus",
+            "updateType",
+            "numberOfReports",
+            "webPersonMetrics",
+            "date",
+            "mediaEntries",
+            "searchName",
+            "searchUpToDate",
+            "candidateStatus",
+            "contactEmail",
+            "percentAccepted",
+            "permission",
+            "permissions",
+            "processingMetrics",
+            "profiles",
+            "priority"
+           ],
+           "type": "object",
+           "properties": {
+            "uuid": {
+             "title": "Uuid",
+             "type": "string",
+             "format": "uuid"
+            },
+            "reportId": {
+             "title": "Reportid",
+             "type": "string",
+             "format": "uuid"
+            },
+            "personId": {
+             "title": "Personid",
+             "type": "string",
+             "format": "uuid"
+            },
+            "flagKitVersionId": {
+             "title": "Flagkitversionid",
+             "type": "string",
+             "format": "uuid"
+            },
+            "companyId": {
+             "title": "Companyid",
+             "type": "string",
+             "format": "uuid"
+            },
+            "name": {
+             "title": "Name",
+             "type": "string"
+            },
+            "firstName": {
+             "title": "Firstname",
+             "type": "string"
+            },
+            "middleName": {
+             "title": "Middlename",
+             "type": "string",
+             "default": ""
+            },
+            "lastName": {
+             "title": "Lastname",
+             "type": "string"
+            },
+            "dateOfBirth": {
+             "title": "Dateofbirth",
+             "type": "integer"
+            },
+            "role": {
+             "title": "Role",
+             "type": "string"
+            },
+            "emailList": {
+             "title": "Emaillist",
+             "type": "array",
+             "items": {
+              "title": "Email",
+              "required": [
+               "email"
+              ],
+              "type": "object",
+              "properties": {
+               "email": {
+                "title": "Email",
+                "type": "string"
+               }
+              }
+             }
+            },
+            "aliasList": {
+             "title": "Aliaslist",
+             "type": "array",
+             "items": {
+              "title": "Alias",
+              "required": [
+               "name"
+              ],
+              "type": "object",
+              "properties": {
+               "name": {
+                "title": "Name",
+                "type": "string"
+               }
+              }
+             },
+             "default": []
+            },
+            "phoneList": {
+             "title": "Phonelist",
+             "type": "array",
+             "items": {
+              "title": "Phone",
+              "required": [
+               "number"
+              ],
+              "type": "object",
+              "properties": {
+               "number": {
+                "title": "Number",
+                "type": "string"
+               }
+              }
+             },
+             "default": []
+            },
+            "locationList": {
+             "title": "Locationlist",
+             "type": "array",
+             "items": {
+              "title": "Location",
+              "type": "object",
+              "properties": {
+               "formattedAddress": {
+                "title": "Formattedaddress",
+                "type": "string",
+                "default": ""
+               },
+               "line1": {
+                "title": "Line1",
+                "type": "string",
+                "default": ""
+               },
+               "line2": {
+                "title": "Line2",
+                "type": "string",
+                "default": ""
+               },
+               "city": {
+                "title": "City",
+                "type": "string",
+                "default": ""
+               },
+               "state": {
+                "title": "State",
+                "type": "string",
+                "default": ""
+               },
+               "country": {
+                "title": "Country",
+                "type": "string",
+                "default": ""
+               },
+               "startDate": {
+                "title": "Startdate",
+                "type": "string"
+               },
+               "endDate": {
+                "title": "Enddate",
+                "type": "string"
+               }
+              }
+             },
+             "default": []
+            },
+            "degreeList": {
+             "title": "Degreelist",
+             "type": "array",
+             "items": {
+              "title": "Degree",
+              "required": [
+               "educator"
+              ],
+              "type": "object",
+              "properties": {
+               "name": {
+                "title": "Name",
+                "type": "string"
+               },
+               "educator": {
+                "title": "Educator",
+                "type": "string"
+               },
+               "startDate": {
+                "title": "Startdate",
+                "type": "string"
+               },
+               "endDate": {
+                "title": "Enddate",
+                "type": "string"
+               }
+              }
+             },
+             "default": []
+            },
+            "jobList": {
+             "title": "Joblist",
+             "type": "array",
+             "items": {
+              "title": "Job",
+              "required": [
+               "employer"
+              ],
+              "type": "object",
+              "properties": {
+               "name": {
+                "title": "Name",
+                "type": "string"
+               },
+               "startDate": {
+                "title": "Startdate",
+                "type": "string"
+               },
+               "endDate": {
+                "title": "Enddate",
+                "type": "string"
+               },
+               "employer": {
+                "title": "Employer",
+                "type": "string"
+               }
+              }
+             },
+             "default": []
+            },
+            "dateModified": {
+             "title": "Datemodified",
+             "type": "integer"
+            },
+            "datesFinished": {
+             "title": "Datesfinished",
+             "type": "array",
+             "items": {
+              "type": "integer"
+             }
+            },
+            "datesProcessing": {
+             "title": "Datesprocessing",
+             "type": "array",
+             "items": {
+              "type": "integer"
+             }
+            },
+            "personStatus": {
+             "title": "PersonStatus",
+             "enum": [
+              "AWAITING_DISCLOSURE",
+              "PROCESSING",
+              "FINISHED"
+             ],
+             "type": "string",
+             "description": "An enumeration."
+            },
+            "reviewStatus": {
+             "title": "ReviewStatus",
+             "enum": [
+              "PENDING",
+              "FINISHED",
+              "NOT_REQUIRED"
+             ],
+             "type": "string",
+             "description": "An enumeration."
+            },
+            "updateType": {
+             "title": "UpdateType",
+             "enum": [
+              "ORIGINAL",
+              "FLAG_KIT",
+              "RE_ADD"
+             ],
+             "type": "string",
+             "description": "An enumeration."
+            },
+            "numberOfReports": {
+             "title": "Numberofreports",
+             "type": "integer"
+            },
+            "webPersonMetrics": {
+             "title": "Metrics",
+             "required": [
+              "personUuid"
+             ],
+             "type": "object",
+             "properties": {
+              "badNewsFlagCount": {
+               "title": "Badnewsflagcount",
+               "type": "integer"
+              },
+              "badPostFlagCount": {
+               "title": "Badpostflagcount",
+               "type": "integer"
+              },
+              "goodNewsFlagCount": {
+               "title": "Goodnewsflagcount",
+               "type": "integer"
+              },
+              "goodPostFlagCount": {
+               "title": "Goodpostflagcount",
+               "type": "integer"
+              },
+              "keywordNewsFlagCount": {
+               "title": "Keywordnewsflagcount",
+               "type": "integer"
+              },
+              "keywordPostFlagCount": {
+               "title": "Keywordpostflagcount",
+               "type": "integer"
+              },
+              "newsFlagCountsByKeyword": {
+               "title": "Newsflagcountsbykeyword",
+               "type": "object",
+               "additionalProperties": {
+                "type": "integer"
+               },
+               "default": {}
+              },
+              "newsFlagCountsByType": {
+               "title": "Newsflagcountsbytype",
+               "type": "object",
+               "additionalProperties": {
+                "type": "integer"
+               },
+               "default": {}
+              },
+              "personUuid": {
+               "title": "Personuuid",
+               "type": "string"
+              },
+              "postFlagCountsByKeyword": {
+               "title": "Postflagcountsbykeyword",
+               "type": "object",
+               "additionalProperties": {
+                "type": "integer"
+               },
+               "default": {}
+              },
+              "postFlagCountsByProfileType": {
+               "title": "Postflagcountsbyprofiletype",
+               "type": "object",
+               "additionalProperties": {
+                "type": "integer"
+               },
+               "default": {}
+              },
+              "postFlagCountsByType": {
+               "title": "Postflagcountsbytype",
+               "type": "object",
+               "additionalProperties": {
+                "type": "integer"
+               },
+               "default": {}
+              },
+              "postFlagTypeCountsByPostType": {
+               "title": "Postflagtypecountsbyposttype",
+               "type": "object",
+               "additionalProperties": {
+                "type": "integer"
+               },
+               "default": {}
+              },
+              "profileUrlsByProfileType": {
+               "title": "Profileurlsbyprofiletype",
+               "type": "object",
+               "additionalProperties": {
+                "type": "array",
+                "items": {
+                 "type": "string"
+                }
+               },
+               "default": {}
+              },
+              "relevantNewsFlagCount": {
+               "title": "Relevantnewsflagcount",
+               "type": "integer"
+              },
+              "totalBadFlagCount": {
+               "title": "Totalbadflagcount",
+               "type": "integer"
+              },
+              "totalGoodFlagCount": {
+               "title": "Totalgoodflagcount",
+               "type": "integer"
+              },
+              "totalNewsFlagCount": {
+               "title": "Totalnewsflagcount",
+               "type": "integer"
+              },
+              "totalPostFlagCount": {
+               "title": "Totalpostflagcount",
+               "type": "integer"
+              }
+             }
+            },
+            "creator": {
+             "title": "Creator",
+             "type": "string",
+             "default": ""
+            },
+            "screeningCompanyName": {
+             "title": "Screeningcompanyname",
+             "type": "string",
+             "default": ""
+            },
+            "date": {
+             "title": "Date",
+             "type": "integer"
+            },
+            "flagCount": {
+             "title": "Flagcount",
+             "type": "integer",
+             "default": 0
+            },
+            "flagTypes": {
+             "title": "Flagtypes",
+             "type": "array",
+             "items": {
+              "type": "string"
+             },
+             "default": []
+            },
+            "mediaEntries": {
+             "title": "Mediaentries",
+             "type": "array",
+             "items": {
+              "title": "Media",
+              "required": [
+               "mediaUrl",
+               "thumbnailUrl",
+               "mediaType"
+              ],
+              "type": "object",
+              "properties": {
+               "mediaUrl": {
+                "title": "Mediaurl",
+                "type": "string"
+               },
+               "thumbnailUrl": {
+                "title": "Thumbnailurl",
+                "type": "string"
+               },
+               "mediaType": {
+                "title": "MediaType",
+                "enum": [
+                 "IMAGE",
+                 "VIDEO",
+                 "LINK"
+                ],
+                "type": "string",
+                "description": "An enumeration."
+               }
+              }
+             }
+            },
+            "searchId": {
+             "title": "Searchid",
+             "type": "string",
+             "default": ""
+            },
+            "searchName": {
+             "title": "Searchname",
+             "type": "string"
+            },
+            "searchUpToDate": {
+             "title": "Searchuptodate",
+             "type": "boolean"
+            },
+            "candidateStatus": {
+             "title": "Candidatestatus",
+             "type": "string"
+            },
+            "contactEmail": {
+             "title": "Contactemail",
+             "type": "string"
+            },
+            "investigator": {
+             "title": "Investigator",
+             "type": "boolean"
+            },
+            "lookbackWindow": {
+             "title": "Lookbackwindow",
+             "type": "integer"
+            },
+            "paused": {
+             "title": "Paused",
+             "type": "boolean"
+            },
+            "percentAccepted": {
+             "title": "Percentaccepted",
+             "type": "integer",
+             "nullable": true,
+             "default": null
+            },
+            "permission": {
+             "title": "Permission",
+             "type": "string",
+             "nullable": true,
+             "default": null
+            },
+            "permissions": {
+             "title": "Permissions",
+             "type": "string",
+             "nullable": true,
+             "default": null
+            },
+            "processingMetrics": {
+             "title": "Processingmetrics",
+             "type": "string",
+             "nullable": true,
+             "default": null
+            },
+            "profiles": {
+             "title": "Profiles",
+             "type": "string",
+             "nullable": true,
+             "default": null
+            },
+            "priority": {
+             "title": "Priority",
+             "type": "string",
+             "nullable": true,
+             "default": null
+            },
+            "visiblePriority": {
+             "title": "Visiblepriority",
+             "type": "string",
+             "nullable": true,
+             "default": null
+            },
+            "contractId": {
+             "title": "Contractid",
+             "type": "string",
+             "default": "00000000-0000-0000-0000-000000000000"
+            }
+           }
+          }
+         }
+        }
+       },
+       "422": {
+        "description": "Validation Error",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "HTTPValidationError",
+           "type": "object",
+           "properties": {
+            "detail": {
+             "title": "Detail",
+             "type": "array",
+             "items": {
+              "title": "ValidationError",
+              "required": [
+               "loc",
+               "msg",
+               "type"
+              ],
+              "type": "object",
+              "properties": {
+               "loc": {
+                "title": "Location",
+                "type": "array",
+                "items": {
+                 "anyOf": [
+                  {
+                   "type": "string"
+                  },
+                  {
+                   "type": "integer"
+                  }
+                 ]
+                }
+               },
+               "msg": {
+                "title": "Message",
+                "type": "string"
+               },
+               "type": {
+                "title": "Error Type",
+                "type": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developer.fama.io/reference/get_person_profiles_api_person__report_id__profile_get.md",
+  "definition": {
+   "openapi": "3.0.2",
+   "info": {
+    "title": "Fama Public API",
+    "description": "Exchanges existing \"Core\" Basic Auth for an \"Ossa\" API token for use with Public API endpoints.  \nThis is typically only useful for API customers migrating from the deprecated \"Core\" platform. It will yield an API token for use in bearer Authorization header.\nNew and Migrated API users can simply retrieve their API token from their [Company Page](https://v3-ui.sandbox.service.fama.io/#/companies) in the Ossa Application.  \nFor access to our sandbox environment, please [request sandbox access](https://developer.fama.io/sandbox/request-sandbox-access/).\n",
+    "version": "dev",
+    "contact": {
+     "url": "https://fama.readme.io",
+     "email": "admin@developer.fama.io"
+    }
+   },
+   "servers": [
+    {
+     "url": "https://api.sandbox.service.fama.io",
+     "description": "Sandbox server for testing"
+    }
+   ],
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "paths": {
+    "/api/person/{report_id}/profile": {
+     "get": {
+      "tags": [
+       "Public Endpoints"
+      ],
+      "summary": "Get Person Profiles",
+      "operationId": "get_person_profiles_api_person__report_id__profile_get",
+      "parameters": [
+       {
+        "required": true,
+        "schema": {
+         "title": "Report Id",
+         "type": "string",
+         "format": "uuid"
+        },
+        "name": "report_id",
+        "in": "path"
+       },
+       {
+        "required": false,
+        "schema": {
+         "title": "Pagenumber",
+         "type": "integer",
+         "default": 0
+        },
+        "name": "pageNumber",
+        "in": "query"
+       },
+       {
+        "required": false,
+        "schema": {
+         "title": "Profilesperpage",
+         "type": "integer",
+         "default": 20
+        },
+        "name": "profilesPerPage",
+        "in": "query"
+       },
+       {
+        "required": false,
+        "schema": {
+         "allOf": [
+          {
+           "title": "ProfileQueryType",
+           "enum": [
+            "ALL",
+            "OWNED",
+            "POSSIBLE",
+            "REMOVED"
+           ],
+           "type": "string",
+           "description": "An enumeration."
+          }
+         ],
+         "default": "ALL"
+        },
+        "name": "queryType",
+        "in": "query"
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "Successful Response",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "Response Get Person Profiles Api Person  Report Id  Profile Get",
+           "type": "array",
+           "items": {
+            "title": "Profile",
+            "required": [
+             "uuid",
+             "url",
+             "profileType"
+            ],
+            "type": "object",
+            "properties": {
+             "uuid": {
+              "title": "Uuid",
+              "type": "string"
+             },
+             "url": {
+              "title": "Url",
+              "type": "string"
+             },
+             "profileType": {
+              "title": "Profiletype",
+              "type": "string"
+             },
+             "status": {
+              "allOf": [
+               {
+                "title": "ProfileStatus",
+                "enum": [
+                 "CONFIRMED",
+                 "UNCONFIRMED",
+                 "REMOVED"
+                ],
+                "type": "string",
+                "description": "An enumeration."
+               }
+              ],
+              "default": "CONFIRMED"
+             },
+             "siteId": {
+              "title": "Siteid",
+              "type": "string",
+              "default": ""
+             },
+             "handle": {
+              "title": "Handle",
+              "type": "string",
+              "default": ""
+             },
+             "displayName": {
+              "title": "Displayname",
+              "type": "string",
+              "default": ""
+             },
+             "imageUrl": {
+              "title": "Imageurl",
+              "type": "string",
+              "default": ""
+             },
+             "priority": {
+              "title": "Priority",
+              "type": "string"
+             },
+             "permission": {
+              "title": "Permission",
+              "type": "string"
+             },
+             "keywords": {
+              "title": "Keywords",
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             },
+             "addedByRater": {
+              "title": "Addedbyrater",
+              "type": "boolean",
+              "default": true
+             },
+             "verified": {
+              "title": "Verified",
+              "type": "boolean",
+              "default": false
+             }
+            }
+           }
+          }
+         }
+        }
+       },
+       "422": {
+        "description": "Validation Error",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "HTTPValidationError",
+           "type": "object",
+           "properties": {
+            "detail": {
+             "title": "Detail",
+             "type": "array",
+             "items": {
+              "title": "ValidationError",
+              "required": [
+               "loc",
+               "msg",
+               "type"
+              ],
+              "type": "object",
+              "properties": {
+               "loc": {
+                "title": "Location",
+                "type": "array",
+                "items": {
+                 "anyOf": [
+                  {
+                   "type": "string"
+                  },
+                  {
+                   "type": "integer"
+                  }
+                 ]
+                }
+               },
+               "msg": {
+                "title": "Message",
+                "type": "string"
+               },
+               "type": {
+                "title": "Error Type",
+                "type": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developer.fama.io/reference/get_person_posts_api_person__report_id__post_get.md",
+  "definition": {
+   "openapi": "3.0.2",
+   "info": {
+    "title": "Fama Public API",
+    "description": "Exchanges existing \"Core\" Basic Auth for an \"Ossa\" API token for use with Public API endpoints.  \nThis is typically only useful for API customers migrating from the deprecated \"Core\" platform. It will yield an API token for use in bearer Authorization header.\nNew and Migrated API users can simply retrieve their API token from their [Company Page](https://v3-ui.sandbox.service.fama.io/#/companies) in the Ossa Application.  \nFor access to our sandbox environment, please [request sandbox access](https://developer.fama.io/sandbox/request-sandbox-access/).\n",
+    "version": "dev",
+    "contact": {
+     "url": "https://fama.readme.io",
+     "email": "admin@developer.fama.io"
+    }
+   },
+   "servers": [
+    {
+     "url": "https://api.sandbox.service.fama.io",
+     "description": "Sandbox server for testing"
+    }
+   ],
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "paths": {
+    "/api/person/{report_id}/post": {
+     "get": {
+      "tags": [
+       "Public Endpoints"
+      ],
+      "summary": "Get Person Posts",
+      "operationId": "get_person_posts_api_person__report_id__post_get",
+      "parameters": [
+       {
+        "required": true,
+        "schema": {
+         "title": "Report Id",
+         "type": "string",
+         "format": "uuid"
+        },
+        "name": "report_id",
+        "in": "path"
+       },
+       {
+        "required": false,
+        "schema": {
+         "allOf": [
+          {
+           "title": "RateableQueryType",
+           "enum": [
+            "ALL",
+            "FLAGGED",
+            "RELEVANT"
+           ],
+           "type": "string",
+           "description": "An enumeration."
+          }
+         ],
+         "default": "FLAGGED"
+        },
+        "name": "status",
+        "in": "query"
+       },
+       {
+        "required": false,
+        "schema": {
+         "title": "Pagenumber",
+         "type": "integer",
+         "default": 0
+        },
+        "name": "pageNumber",
+        "in": "query"
+       },
+       {
+        "required": false,
+        "schema": {
+         "title": "Postsperpage",
+         "type": "integer",
+         "default": 20
+        },
+        "name": "postsPerPage",
+        "in": "query"
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "Successful Response",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "Response Get Person Posts Api Person  Report Id  Post Get",
+           "type": "array",
+           "items": {
+            "title": "Post",
+            "required": [
+             "uuid",
+             "siteId",
+             "url",
+             "text",
+             "date",
+             "postType"
+            ],
+            "type": "object",
+            "properties": {
+             "uuid": {
+              "title": "Uuid",
+              "type": "string"
+             },
+             "siteId": {
+              "title": "Siteid",
+              "type": "string"
+             },
+             "url": {
+              "title": "Url",
+              "type": "string"
+             },
+             "text": {
+              "title": "Text",
+              "type": "string"
+             },
+             "date": {
+              "title": "Date",
+              "type": "integer"
+             },
+             "postType": {
+              "title": "PostType",
+              "enum": [
+               "ORIGINAL",
+               "SHARED",
+               "LIKED"
+              ],
+              "type": "string",
+              "description": "An enumeration."
+             },
+             "profileType": {
+              "title": "Profiletype",
+              "type": "string",
+              "default": "OTHER"
+             },
+             "mediaEntries": {
+              "title": "Mediaentries",
+              "type": "array",
+              "items": {
+               "title": "MediaEntry",
+               "required": [
+                "mediaUrl",
+                "mediaType"
+               ],
+               "type": "object",
+               "properties": {
+                "mediaUrl": {
+                 "title": "Mediaurl",
+                 "type": "string"
+                },
+                "mediaType": {
+                 "title": "MediaType",
+                 "enum": [
+                  "IMAGE",
+                  "VIDEO",
+                  "LINK"
+                 ],
+                 "type": "string",
+                 "description": "An enumeration."
+                },
+                "thumbnailUrl": {
+                 "title": "Thumbnailurl",
+                 "type": "string",
+                 "default": ""
+                },
+                "famaUrl": {
+                 "title": "Famaurl",
+                 "type": "string",
+                 "default": ""
+                }
+               }
+              },
+              "default": []
+             },
+             "flaggedKeywords": {
+              "title": "Flaggedkeywords",
+              "type": "array",
+              "items": {
+               "type": "string"
+              },
+              "default": []
+             },
+             "flaggedStemmableKeywords": {
+              "title": "Flaggedstemmablekeywords",
+              "type": "array",
+              "items": {
+               "type": "string"
+              },
+              "default": []
+             },
+             "flaggedSensitivities": {
+              "type": "array",
+              "items": {
+               "title": "SensitivityType",
+               "enum": [
+                "ALCOHOL",
+                "BIGOTRY",
+                "CANNABIS",
+                "CRIMINAL",
+                "COMMUNITY",
+                "DISENGAGEMENT",
+                "DONATION",
+                "HARASSMENT",
+                "HELPING_OTHERS",
+                "INTOLERANCE",
+                "LANGUAGE",
+                "OTHER_DRUGS",
+                "PROTECTING_OTHERS",
+                "SEX",
+                "SEXISM",
+                "THREAT",
+                "VIOLENCE",
+                "VOLUNTEERING"
+               ],
+               "type": "string",
+               "description": "An enumeration."
+              },
+              "default": []
+             },
+             "comments": {
+              "title": "Comments",
+              "type": "array",
+              "items": {
+               "type": "string"
+              },
+              "default": []
+             },
+             "addedInLastRerun": {
+              "title": "Addedinlastrerun",
+              "type": "boolean",
+              "default": true
+             },
+             "profileHandle": {
+              "title": "Profilehandle",
+              "type": "string"
+             },
+             "priority": {
+              "title": "Priority",
+              "type": "string"
+             },
+             "permission": {
+              "title": "Permission",
+              "type": "string"
+             },
+             "status": {
+              "title": "Status",
+              "type": "string"
+             }
+            }
+           }
+          }
+         }
+        }
+       },
+       "422": {
+        "description": "Validation Error",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "HTTPValidationError",
+           "type": "object",
+           "properties": {
+            "detail": {
+             "title": "Detail",
+             "type": "array",
+             "items": {
+              "title": "ValidationError",
+              "required": [
+               "loc",
+               "msg",
+               "type"
+              ],
+              "type": "object",
+              "properties": {
+               "loc": {
+                "title": "Location",
+                "type": "array",
+                "items": {
+                 "anyOf": [
+                  {
+                   "type": "string"
+                  },
+                  {
+                   "type": "integer"
+                  }
+                 ]
+                }
+               },
+               "msg": {
+                "title": "Message",
+                "type": "string"
+               },
+               "type": {
+                "title": "Error Type",
+                "type": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developer.fama.io/reference/get_person_articles_api_person__report_id__searchcontent_get.md",
+  "definition": {
+   "openapi": "3.0.2",
+   "info": {
+    "title": "Fama Public API",
+    "description": "Exchanges existing \"Core\" Basic Auth for an \"Ossa\" API token for use with Public API endpoints.  \nThis is typically only useful for API customers migrating from the deprecated \"Core\" platform. It will yield an API token for use in bearer Authorization header.\nNew and Migrated API users can simply retrieve their API token from their [Company Page](https://v3-ui.sandbox.service.fama.io/#/companies) in the Ossa Application.  \nFor access to our sandbox environment, please [request sandbox access](https://developer.fama.io/sandbox/request-sandbox-access/).\n",
+    "version": "dev",
+    "contact": {
+     "url": "https://fama.readme.io",
+     "email": "admin@developer.fama.io"
+    }
+   },
+   "servers": [
+    {
+     "url": "https://api.sandbox.service.fama.io",
+     "description": "Sandbox server for testing"
+    }
+   ],
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "paths": {
+    "/api/person/{report_id}/searchContent": {
+     "get": {
+      "tags": [
+       "Public Endpoints"
+      ],
+      "summary": "Get Person Articles",
+      "operationId": "get_person_articles_api_person__report_id__searchContent_get",
+      "parameters": [
+       {
+        "required": true,
+        "schema": {
+         "title": "Report Id",
+         "type": "string",
+         "format": "uuid"
+        },
+        "name": "report_id",
+        "in": "path"
+       },
+       {
+        "required": false,
+        "schema": {
+         "allOf": [
+          {
+           "title": "RateableQueryType",
+           "enum": [
+            "ALL",
+            "FLAGGED",
+            "RELEVANT"
+           ],
+           "type": "string",
+           "description": "An enumeration."
+          }
+         ],
+         "default": "RELEVANT"
+        },
+        "name": "queryType",
+        "in": "query"
+       },
+       {
+        "required": false,
+        "schema": {
+         "title": "Pagenumber",
+         "type": "integer",
+         "default": 0
+        },
+        "name": "pageNumber",
+        "in": "query"
+       },
+       {
+        "required": false,
+        "schema": {
+         "title": "Contentperpage",
+         "type": "integer",
+         "default": 20
+        },
+        "name": "contentPerPage",
+        "in": "query"
+       },
+       {
+        "required": false,
+        "schema": {
+         "title": "Includeexcluded",
+         "type": "boolean",
+         "default": false
+        },
+        "name": "includeExcluded",
+        "in": "query"
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "Successful Response",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "Response Get Person Articles Api Person  Report Id  Searchcontent Get",
+           "type": "array",
+           "items": {
+            "title": "Article",
+            "required": [
+             "uuid",
+             "personUuid",
+             "text",
+             "title",
+             "originalUrl",
+             "displayUrl",
+             "relevant",
+             "flaggedKeywords",
+             "flaggedStemmableKeywords",
+             "flaggedSensitivities"
+            ],
+            "type": "object",
+            "properties": {
+             "uuid": {
+              "title": "Uuid",
+              "type": "string"
+             },
+             "personUuid": {
+              "title": "Personuuid",
+              "type": "string"
+             },
+             "text": {
+              "title": "Text",
+              "type": "string"
+             },
+             "contentDate": {
+              "title": "Contentdate",
+              "type": "integer"
+             },
+             "contentFamaDate": {
+              "title": "Contentfamadate",
+              "type": "integer"
+             },
+             "title": {
+              "title": "Title",
+              "type": "string"
+             },
+             "originalUrl": {
+              "title": "Originalurl",
+              "type": "string"
+             },
+             "displayUrl": {
+              "title": "Displayurl",
+              "type": "string"
+             },
+             "indexUrl": {
+              "title": "Indexurl",
+              "type": "string",
+              "default": ""
+             },
+             "relevant": {
+              "title": "Relevant",
+              "type": "boolean"
+             },
+             "flaggedKeywords": {
+              "title": "Flaggedkeywords",
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             },
+             "flaggedStemmableKeywords": {
+              "title": "Flaggedstemmablekeywords",
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             },
+             "flaggedSensitivities": {
+              "type": "array",
+              "items": {
+               "title": "SensitivityType",
+               "enum": [
+                "ALCOHOL",
+                "BIGOTRY",
+                "CANNABIS",
+                "CRIMINAL",
+                "COMMUNITY",
+                "DISENGAGEMENT",
+                "DONATION",
+                "HARASSMENT",
+                "HELPING_OTHERS",
+                "INTOLERANCE",
+                "LANGUAGE",
+                "OTHER_DRUGS",
+                "PROTECTING_OTHERS",
+                "SEX",
+                "SEXISM",
+                "THREAT",
+                "VIOLENCE",
+                "VOLUNTEERING"
+               ],
+               "type": "string",
+               "description": "An enumeration."
+              }
+             },
+             "webDataType": {
+              "title": "Webdatatype",
+              "type": "string"
+             },
+             "source": {
+              "title": "Source",
+              "type": "string"
+             },
+             "webDataProviderType": {
+              "title": "Webdataprovidertype",
+              "type": "string"
+             },
+             "personSearchContentDecision": {
+              "title": "Personsearchcontentdecision",
+              "type": "string"
+             },
+             "addedInLastRerun": {
+              "title": "Addedinlastrerun",
+              "type": "boolean",
+              "default": true
+             },
+             "excluded": {
+              "title": "Excluded",
+              "type": "boolean",
+              "default": false
+             },
+             "priority": {
+              "title": "Priority",
+              "type": "string"
+             },
+             "permission": {
+              "title": "Permission",
+              "type": "string"
+             },
+             "probability": {
+              "title": "Probability",
+              "type": "number",
+              "default": 0
+             },
+             "articleQueries": {
+              "title": "Articlequeries",
+              "type": "string"
+             },
+             "addedManually": {
+              "title": "Addedmanually",
+              "type": "boolean",
+              "default": false
+             }
+            }
+           }
+          }
+         }
+        }
+       },
+       "422": {
+        "description": "Validation Error",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "HTTPValidationError",
+           "type": "object",
+           "properties": {
+            "detail": {
+             "title": "Detail",
+             "type": "array",
+             "items": {
+              "title": "ValidationError",
+              "required": [
+               "loc",
+               "msg",
+               "type"
+              ],
+              "type": "object",
+              "properties": {
+               "loc": {
+                "title": "Location",
+                "type": "array",
+                "items": {
+                 "anyOf": [
+                  {
+                   "type": "string"
+                  },
+                  {
+                   "type": "integer"
+                  }
+                 ]
+                }
+               },
+               "msg": {
+                "title": "Message",
+                "type": "string"
+               },
+               "type": {
+                "title": "Error Type",
+                "type": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developer.fama.io/reference/get_person_all_api_person__report_id__all_get.md",
+  "definition": {
+   "openapi": "3.0.2",
+   "info": {
+    "title": "Fama Public API",
+    "description": "Exchanges existing \"Core\" Basic Auth for an \"Ossa\" API token for use with Public API endpoints.  \nThis is typically only useful for API customers migrating from the deprecated \"Core\" platform. It will yield an API token for use in bearer Authorization header.\nNew and Migrated API users can simply retrieve their API token from their [Company Page](https://v3-ui.sandbox.service.fama.io/#/companies) in the Ossa Application.  \nFor access to our sandbox environment, please [request sandbox access](https://developer.fama.io/sandbox/request-sandbox-access/).\n",
+    "version": "dev",
+    "contact": {
+     "url": "https://fama.readme.io",
+     "email": "admin@developer.fama.io"
+    }
+   },
+   "servers": [
+    {
+     "url": "https://api.sandbox.service.fama.io",
+     "description": "Sandbox server for testing"
+    }
+   ],
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "paths": {
+    "/api/person/{report_id}/all": {
+     "get": {
+      "tags": [
+       "Public Endpoints"
+      ],
+      "summary": "Get Person All",
+      "operationId": "get_person_all_api_person__report_id__all_get",
+      "parameters": [
+       {
+        "required": true,
+        "schema": {
+         "title": "Report Id",
+         "type": "string",
+         "format": "uuid"
+        },
+        "name": "report_id",
+        "in": "path"
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "Successful Response",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "Response Get Person All Api Person  Report Id  All Get",
+           "type": "array",
+           "items": {
+            "title": "Person",
+            "required": [
+             "uuid",
+             "reportId",
+             "personId",
+             "companyId",
+             "name",
+             "firstName",
+             "lastName",
+             "emailList",
+             "dateModified",
+             "datesProcessing",
+             "personStatus",
+             "reviewStatus",
+             "updateType",
+             "numberOfReports",
+             "webPersonMetrics",
+             "date",
+             "mediaEntries",
+             "searchName",
+             "searchUpToDate",
+             "candidateStatus",
+             "contactEmail",
+             "percentAccepted",
+             "permission",
+             "permissions",
+             "processingMetrics",
+             "profiles",
+             "priority"
+            ],
+            "type": "object",
+            "properties": {
+             "uuid": {
+              "title": "Uuid",
+              "type": "string",
+              "format": "uuid"
+             },
+             "reportId": {
+              "title": "Reportid",
+              "type": "string",
+              "format": "uuid"
+             },
+             "personId": {
+              "title": "Personid",
+              "type": "string",
+              "format": "uuid"
+             },
+             "flagKitVersionId": {
+              "title": "Flagkitversionid",
+              "type": "string",
+              "format": "uuid"
+             },
+             "companyId": {
+              "title": "Companyid",
+              "type": "string",
+              "format": "uuid"
+             },
+             "name": {
+              "title": "Name",
+              "type": "string"
+             },
+             "firstName": {
+              "title": "Firstname",
+              "type": "string"
+             },
+             "middleName": {
+              "title": "Middlename",
+              "type": "string",
+              "default": ""
+             },
+             "lastName": {
+              "title": "Lastname",
+              "type": "string"
+             },
+             "dateOfBirth": {
+              "title": "Dateofbirth",
+              "type": "integer"
+             },
+             "role": {
+              "title": "Role",
+              "type": "string"
+             },
+             "emailList": {
+              "title": "Emaillist",
+              "type": "array",
+              "items": {
+               "title": "Email",
+               "required": [
+                "email"
+               ],
+               "type": "object",
+               "properties": {
+                "email": {
+                 "title": "Email",
+                 "type": "string"
+                }
+               }
+              }
+             },
+             "aliasList": {
+              "title": "Aliaslist",
+              "type": "array",
+              "items": {
+               "title": "Alias",
+               "required": [
+                "name"
+               ],
+               "type": "object",
+               "properties": {
+                "name": {
+                 "title": "Name",
+                 "type": "string"
+                }
+               }
+              },
+              "default": []
+             },
+             "phoneList": {
+              "title": "Phonelist",
+              "type": "array",
+              "items": {
+               "title": "Phone",
+               "required": [
+                "number"
+               ],
+               "type": "object",
+               "properties": {
+                "number": {
+                 "title": "Number",
+                 "type": "string"
+                }
+               }
+              },
+              "default": []
+             },
+             "locationList": {
+              "title": "Locationlist",
+              "type": "array",
+              "items": {
+               "title": "Location",
+               "type": "object",
+               "properties": {
+                "formattedAddress": {
+                 "title": "Formattedaddress",
+                 "type": "string",
+                 "default": ""
+                },
+                "line1": {
+                 "title": "Line1",
+                 "type": "string",
+                 "default": ""
+                },
+                "line2": {
+                 "title": "Line2",
+                 "type": "string",
+                 "default": ""
+                },
+                "city": {
+                 "title": "City",
+                 "type": "string",
+                 "default": ""
+                },
+                "state": {
+                 "title": "State",
+                 "type": "string",
+                 "default": ""
+                },
+                "country": {
+                 "title": "Country",
+                 "type": "string",
+                 "default": ""
+                },
+                "startDate": {
+                 "title": "Startdate",
+                 "type": "string"
+                },
+                "endDate": {
+                 "title": "Enddate",
+                 "type": "string"
+                }
+               }
+              },
+              "default": []
+             },
+             "degreeList": {
+              "title": "Degreelist",
+              "type": "array",
+              "items": {
+               "title": "Degree",
+               "required": [
+                "educator"
+               ],
+               "type": "object",
+               "properties": {
+                "name": {
+                 "title": "Name",
+                 "type": "string"
+                },
+                "educator": {
+                 "title": "Educator",
+                 "type": "string"
+                },
+                "startDate": {
+                 "title": "Startdate",
+                 "type": "string"
+                },
+                "endDate": {
+                 "title": "Enddate",
+                 "type": "string"
+                }
+               }
+              },
+              "default": []
+             },
+             "jobList": {
+              "title": "Joblist",
+              "type": "array",
+              "items": {
+               "title": "Job",
+               "required": [
+                "employer"
+               ],
+               "type": "object",
+               "properties": {
+                "name": {
+                 "title": "Name",
+                 "type": "string"
+                },
+                "startDate": {
+                 "title": "Startdate",
+                 "type": "string"
+                },
+                "endDate": {
+                 "title": "Enddate",
+                 "type": "string"
+                },
+                "employer": {
+                 "title": "Employer",
+                 "type": "string"
+                }
+               }
+              },
+              "default": []
+             },
+             "dateModified": {
+              "title": "Datemodified",
+              "type": "integer"
+             },
+             "datesFinished": {
+              "title": "Datesfinished",
+              "type": "array",
+              "items": {
+               "type": "integer"
+              }
+             },
+             "datesProcessing": {
+              "title": "Datesprocessing",
+              "type": "array",
+              "items": {
+               "type": "integer"
+              }
+             },
+             "personStatus": {
+              "title": "PersonStatus",
+              "enum": [
+               "AWAITING_DISCLOSURE",
+               "PROCESSING",
+               "FINISHED"
+              ],
+              "type": "string",
+              "description": "An enumeration."
+             },
+             "reviewStatus": {
+              "title": "ReviewStatus",
+              "enum": [
+               "PENDING",
+               "FINISHED",
+               "NOT_REQUIRED"
+              ],
+              "type": "string",
+              "description": "An enumeration."
+             },
+             "updateType": {
+              "title": "UpdateType",
+              "enum": [
+               "ORIGINAL",
+               "FLAG_KIT",
+               "RE_ADD"
+              ],
+              "type": "string",
+              "description": "An enumeration."
+             },
+             "numberOfReports": {
+              "title": "Numberofreports",
+              "type": "integer"
+             },
+             "webPersonMetrics": {
+              "title": "Metrics",
+              "required": [
+               "personUuid"
+              ],
+              "type": "object",
+              "properties": {
+               "badNewsFlagCount": {
+                "title": "Badnewsflagcount",
+                "type": "integer"
+               },
+               "badPostFlagCount": {
+                "title": "Badpostflagcount",
+                "type": "integer"
+               },
+               "goodNewsFlagCount": {
+                "title": "Goodnewsflagcount",
+                "type": "integer"
+               },
+               "goodPostFlagCount": {
+                "title": "Goodpostflagcount",
+                "type": "integer"
+               },
+               "keywordNewsFlagCount": {
+                "title": "Keywordnewsflagcount",
+                "type": "integer"
+               },
+               "keywordPostFlagCount": {
+                "title": "Keywordpostflagcount",
+                "type": "integer"
+               },
+               "newsFlagCountsByKeyword": {
+                "title": "Newsflagcountsbykeyword",
+                "type": "object",
+                "additionalProperties": {
+                 "type": "integer"
+                },
+                "default": {}
+               },
+               "newsFlagCountsByType": {
+                "title": "Newsflagcountsbytype",
+                "type": "object",
+                "additionalProperties": {
+                 "type": "integer"
+                },
+                "default": {}
+               },
+               "personUuid": {
+                "title": "Personuuid",
+                "type": "string"
+               },
+               "postFlagCountsByKeyword": {
+                "title": "Postflagcountsbykeyword",
+                "type": "object",
+                "additionalProperties": {
+                 "type": "integer"
+                },
+                "default": {}
+               },
+               "postFlagCountsByProfileType": {
+                "title": "Postflagcountsbyprofiletype",
+                "type": "object",
+                "additionalProperties": {
+                 "type": "integer"
+                },
+                "default": {}
+               },
+               "postFlagCountsByType": {
+                "title": "Postflagcountsbytype",
+                "type": "object",
+                "additionalProperties": {
+                 "type": "integer"
+                },
+                "default": {}
+               },
+               "postFlagTypeCountsByPostType": {
+                "title": "Postflagtypecountsbyposttype",
+                "type": "object",
+                "additionalProperties": {
+                 "type": "integer"
+                },
+                "default": {}
+               },
+               "profileUrlsByProfileType": {
+                "title": "Profileurlsbyprofiletype",
+                "type": "object",
+                "additionalProperties": {
+                 "type": "array",
+                 "items": {
+                  "type": "string"
+                 }
+                },
+                "default": {}
+               },
+               "relevantNewsFlagCount": {
+                "title": "Relevantnewsflagcount",
+                "type": "integer"
+               },
+               "totalBadFlagCount": {
+                "title": "Totalbadflagcount",
+                "type": "integer"
+               },
+               "totalGoodFlagCount": {
+                "title": "Totalgoodflagcount",
+                "type": "integer"
+               },
+               "totalNewsFlagCount": {
+                "title": "Totalnewsflagcount",
+                "type": "integer"
+               },
+               "totalPostFlagCount": {
+                "title": "Totalpostflagcount",
+                "type": "integer"
+               }
+              }
+             },
+             "creator": {
+              "title": "Creator",
+              "type": "string",
+              "default": ""
+             },
+             "screeningCompanyName": {
+              "title": "Screeningcompanyname",
+              "type": "string",
+              "default": ""
+             },
+             "date": {
+              "title": "Date",
+              "type": "integer"
+             },
+             "flagCount": {
+              "title": "Flagcount",
+              "type": "integer",
+              "default": 0
+             },
+             "flagTypes": {
+              "title": "Flagtypes",
+              "type": "array",
+              "items": {
+               "type": "string"
+              },
+              "default": []
+             },
+             "mediaEntries": {
+              "title": "Mediaentries",
+              "type": "array",
+              "items": {
+               "title": "Media",
+               "required": [
+                "mediaUrl",
+                "thumbnailUrl",
+                "mediaType"
+               ],
+               "type": "object",
+               "properties": {
+                "mediaUrl": {
+                 "title": "Mediaurl",
+                 "type": "string"
+                },
+                "thumbnailUrl": {
+                 "title": "Thumbnailurl",
+                 "type": "string"
+                },
+                "mediaType": {
+                 "title": "MediaType",
+                 "enum": [
+                  "IMAGE",
+                  "VIDEO",
+                  "LINK"
+                 ],
+                 "type": "string",
+                 "description": "An enumeration."
+                }
+               }
+              }
+             },
+             "searchId": {
+              "title": "Searchid",
+              "type": "string",
+              "default": ""
+             },
+             "searchName": {
+              "title": "Searchname",
+              "type": "string"
+             },
+             "searchUpToDate": {
+              "title": "Searchuptodate",
+              "type": "boolean"
+             },
+             "candidateStatus": {
+              "title": "Candidatestatus",
+              "type": "string"
+             },
+             "contactEmail": {
+              "title": "Contactemail",
+              "type": "string"
+             },
+             "investigator": {
+              "title": "Investigator",
+              "type": "boolean"
+             },
+             "lookbackWindow": {
+              "title": "Lookbackwindow",
+              "type": "integer"
+             },
+             "paused": {
+              "title": "Paused",
+              "type": "boolean"
+             },
+             "percentAccepted": {
+              "title": "Percentaccepted",
+              "type": "integer",
+              "nullable": true,
+              "default": null
+             },
+             "permission": {
+              "title": "Permission",
+              "type": "string",
+              "nullable": true,
+              "default": null
+             },
+             "permissions": {
+              "title": "Permissions",
+              "type": "string",
+              "nullable": true,
+              "default": null
+             },
+             "processingMetrics": {
+              "title": "Processingmetrics",
+              "type": "string",
+              "nullable": true,
+              "default": null
+             },
+             "profiles": {
+              "title": "Profiles",
+              "type": "string",
+              "nullable": true,
+              "default": null
+             },
+             "priority": {
+              "title": "Priority",
+              "type": "string",
+              "nullable": true,
+              "default": null
+             },
+             "visiblePriority": {
+              "title": "Visiblepriority",
+              "type": "string",
+              "nullable": true,
+              "default": null
+             },
+             "contractId": {
+              "title": "Contractid",
+              "type": "string",
+              "default": "00000000-0000-0000-0000-000000000000"
+             }
+            }
+           }
+          }
+         }
+        }
+       },
+       "422": {
+        "description": "Validation Error",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "HTTPValidationError",
+           "type": "object",
+           "properties": {
+            "detail": {
+             "title": "Detail",
+             "type": "array",
+             "items": {
+              "title": "ValidationError",
+              "required": [
+               "loc",
+               "msg",
+               "type"
+              ],
+              "type": "object",
+              "properties": {
+               "loc": {
+                "title": "Location",
+                "type": "array",
+                "items": {
+                 "anyOf": [
+                  {
+                   "type": "string"
+                  },
+                  {
+                   "type": "integer"
+                  }
+                 ]
+                }
+               },
+               "msg": {
+                "title": "Message",
+                "type": "string"
+               },
+               "type": {
+                "title": "Error Type",
+                "type": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developer.fama.io/reference/create_person_api_person_post.md",
+  "definition": {
+   "openapi": "3.0.2",
+   "info": {
+    "title": "Fama Public API",
+    "description": "Exchanges existing \"Core\" Basic Auth for an \"Ossa\" API token for use with Public API endpoints.  \nThis is typically only useful for API customers migrating from the deprecated \"Core\" platform. It will yield an API token for use in bearer Authorization header.\nNew and Migrated API users can simply retrieve their API token from their [Company Page](https://v3-ui.sandbox.service.fama.io/#/companies) in the Ossa Application.  \nFor access to our sandbox environment, please [request sandbox access](https://developer.fama.io/sandbox/request-sandbox-access/).\n",
+    "version": "dev",
+    "contact": {
+     "url": "https://fama.readme.io",
+     "email": "admin@developer.fama.io"
+    }
+   },
+   "servers": [
+    {
+     "url": "https://api.sandbox.service.fama.io",
+     "description": "Sandbox server for testing"
+    }
+   ],
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "paths": {
+    "/api/person": {
+     "post": {
+      "tags": [
+       "Public Endpoints"
+      ],
+      "summary": "Create Person",
+      "operationId": "create_person_api_person_post",
+      "requestBody": {
+       "content": {
+        "application/json": {
+         "schema": {
+          "title": "PersonRequest",
+          "required": [
+           "emailList"
+          ],
+          "type": "object",
+          "properties": {
+           "name": {
+            "title": "Name",
+            "type": "string"
+           },
+           "role": {
+            "title": "Role",
+            "maxLength": 255,
+            "type": "string"
+           },
+           "profiles": {
+            "title": "Profiles",
+            "type": "array",
+            "items": {
+             "type": "string"
+            },
+            "default": []
+           },
+           "firstName": {
+            "title": "Firstname",
+            "type": "string"
+           },
+           "middleName": {
+            "title": "Middlename",
+            "type": "string"
+           },
+           "lastName": {
+            "title": "Lastname",
+            "type": "string"
+           },
+           "dateOfBirth": {
+            "title": "Dateofbirth",
+            "type": "string"
+           },
+           "jobList": {
+            "title": "Joblist",
+            "type": "array",
+            "items": {
+             "title": "Job",
+             "required": [
+              "employer"
+             ],
+             "type": "object",
+             "properties": {
+              "name": {
+               "title": "Name",
+               "type": "string"
+              },
+              "startDate": {
+               "title": "Startdate",
+               "type": "string"
+              },
+              "endDate": {
+               "title": "Enddate",
+               "type": "string"
+              },
+              "employer": {
+               "title": "Employer",
+               "type": "string"
+              }
+             }
+            },
+            "default": []
+           },
+           "degreeList": {
+            "title": "Degreelist",
+            "type": "array",
+            "items": {
+             "title": "Degree",
+             "required": [
+              "educator"
+             ],
+             "type": "object",
+             "properties": {
+              "name": {
+               "title": "Name",
+               "type": "string"
+              },
+              "educator": {
+               "title": "Educator",
+               "type": "string"
+              },
+              "startDate": {
+               "title": "Startdate",
+               "type": "string"
+              },
+              "endDate": {
+               "title": "Enddate",
+               "type": "string"
+              }
+             }
+            },
+            "default": []
+           },
+           "aliasList": {
+            "title": "Aliaslist",
+            "type": "array",
+            "items": {
+             "title": "Alias",
+             "required": [
+              "name"
+             ],
+             "type": "object",
+             "properties": {
+              "name": {
+               "title": "Name",
+               "type": "string"
+              }
+             }
+            },
+            "default": []
+           },
+           "checkTypeId": {
+            "title": "Checktypeid",
+            "type": "string",
+            "format": "uuid"
+           },
+           "flagKitVersionId": {
+            "title": "Flagkitversionid",
+            "type": "string",
+            "format": "uuid"
+           },
+           "locationList": {
+            "title": "Locationlist",
+            "type": "array",
+            "items": {
+             "title": "Location",
+             "type": "object",
+             "properties": {
+              "formattedAddress": {
+               "title": "Formattedaddress",
+               "type": "string",
+               "default": ""
+              },
+              "line1": {
+               "title": "Line1",
+               "type": "string",
+               "default": ""
+              },
+              "line2": {
+               "title": "Line2",
+               "type": "string",
+               "default": ""
+              },
+              "city": {
+               "title": "City",
+               "type": "string",
+               "default": ""
+              },
+              "state": {
+               "title": "State",
+               "type": "string",
+               "default": ""
+              },
+              "country": {
+               "title": "Country",
+               "type": "string",
+               "default": ""
+              },
+              "startDate": {
+               "title": "Startdate",
+               "type": "string"
+              },
+              "endDate": {
+               "title": "Enddate",
+               "type": "string"
+              }
+             }
+            },
+            "default": []
+           },
+           "emailList": {
+            "title": "Emaillist",
+            "type": "array",
+            "items": {
+             "title": "Email",
+             "required": [
+              "email"
+             ],
+             "type": "object",
+             "properties": {
+              "email": {
+               "title": "Email",
+               "type": "string"
+              }
+             }
+            }
+           },
+           "phoneList": {
+            "title": "Phonelist",
+            "type": "array",
+            "items": {
+             "title": "Phone",
+             "required": [
+              "number"
+             ],
+             "type": "object",
+             "properties": {
+              "number": {
+               "title": "Number",
+               "type": "string"
+              }
+             }
+            },
+            "default": []
+           },
+           "mediaEntries": {
+            "title": "Mediaentries",
+            "type": "array",
+            "items": {
+             "title": "Media",
+             "required": [
+              "mediaUrl",
+              "thumbnailUrl",
+              "mediaType"
+             ],
+             "type": "object",
+             "properties": {
+              "mediaUrl": {
+               "title": "Mediaurl",
+               "type": "string"
+              },
+              "thumbnailUrl": {
+               "title": "Thumbnailurl",
+               "type": "string"
+              },
+              "mediaType": {
+               "title": "MediaType",
+               "enum": [
+                "IMAGE",
+                "VIDEO",
+                "LINK"
+               ],
+               "type": "string",
+               "description": "An enumeration."
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       },
+       "required": true
+      },
+      "responses": {
+       "200": {
+        "description": "Successful Response",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "CreatePersonResponse",
+           "required": [
+            "value"
+           ],
+           "type": "object",
+           "properties": {
+            "value": {
+             "title": "Value",
+             "type": "string",
+             "format": "uuid"
+            }
+           }
+          }
+         }
+        }
+       },
+       "422": {
+        "description": "Validation Error",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "HTTPValidationError",
+           "type": "object",
+           "properties": {
+            "detail": {
+             "title": "Detail",
+             "type": "array",
+             "items": {
+              "title": "ValidationError",
+              "required": [
+               "loc",
+               "msg",
+               "type"
+              ],
+              "type": "object",
+              "properties": {
+               "loc": {
+                "title": "Location",
+                "type": "array",
+                "items": {
+                 "anyOf": [
+                  {
+                   "type": "string"
+                  },
+                  {
+                   "type": "integer"
+                  }
+                 ]
+                }
+               },
+               "msg": {
+                "title": "Message",
+                "type": "string"
+               },
+               "type": {
+                "title": "Error Type",
+                "type": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ },
+ {
+  "page": "https://developer.fama.io/reference/get_report_pdf_api_person__report_id__report_get.md",
+  "definition": {
+   "openapi": "3.0.2",
+   "info": {
+    "title": "Fama Public API",
+    "description": "Exchanges existing \"Core\" Basic Auth for an \"Ossa\" API token for use with Public API endpoints.  \nThis is typically only useful for API customers migrating from the deprecated \"Core\" platform. It will yield an API token for use in bearer Authorization header.\nNew and Migrated API users can simply retrieve their API token from their [Company Page](https://v3-ui.sandbox.service.fama.io/#/companies) in the Ossa Application.  \nFor access to our sandbox environment, please [request sandbox access](https://developer.fama.io/sandbox/request-sandbox-access/).\n",
+    "version": "dev",
+    "contact": {
+     "url": "https://fama.readme.io",
+     "email": "admin@developer.fama.io"
+    }
+   },
+   "servers": [
+    {
+     "url": "https://api.sandbox.service.fama.io",
+     "description": "Sandbox server for testing"
+    }
+   ],
+   "security": [
+    {
+     "bearerAuth": []
+    }
+   ],
+   "paths": {
+    "/api/person/{report_id}/report": {
+     "get": {
+      "tags": [
+       "Public Endpoints"
+      ],
+      "summary": "Get Report Pdf",
+      "description": "Retrieves PDF for the given report ID",
+      "operationId": "get_report_pdf_api_person__report_id__report_get",
+      "parameters": [
+       {
+        "required": true,
+        "schema": {
+         "title": "Report Id",
+         "type": "string",
+         "format": "uuid"
+        },
+        "name": "report_id",
+        "in": "path"
+       }
+      ],
+      "responses": {
+       "200": {
+        "description": "PDF requested by Report UUID",
+        "content": {
+         "application/json": {
+          "schema": {}
+         },
+         "application/pdf": {
+          "schema": {
+           "type": "string",
+           "format": "binary"
+          }
+         }
+        }
+       },
+       "422": {
+        "description": "Validation Error",
+        "content": {
+         "application/json": {
+          "schema": {
+           "title": "HTTPValidationError",
+           "type": "object",
+           "properties": {
+            "detail": {
+             "title": "Detail",
+             "type": "array",
+             "items": {
+              "title": "ValidationError",
+              "required": [
+               "loc",
+               "msg",
+               "type"
+              ],
+              "type": "object",
+              "properties": {
+               "loc": {
+                "title": "Location",
+                "type": "array",
+                "items": {
+                 "anyOf": [
+                  {
+                   "type": "string"
+                  },
+                  {
+                   "type": "integer"
+                  }
+                 ]
+                }
+               },
+               "msg": {
+                "title": "Message",
+                "type": "string"
+               },
+               "type": {
+                "title": "Error Type",
+                "type": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "components": {
+    "securitySchemes": {
+     "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+     }
+    }
+   },
+   "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+   }
+  }
+ }
+]

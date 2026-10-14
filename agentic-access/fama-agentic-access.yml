@@ -1,0 +1,288 @@
+generated: '2026-10-14'
+method: generated
+source: openapi/fama-external-interface-openapi.yml, openapi/fama-public-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 26
+  by_action_class:
+    connected: 24
+    acting: 2
+  by_consequence:
+    read: 24
+    write: 2
+  human_in_the_loop_required: 0
+operations:
+- path: /behavior_kit/{behavior_kit_uuid}
+  method: get
+  operationId: _get_behavior_kit_behavior_kit__behavior_kit_uuid__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /check_type/{check_type_uuid}
+  method: get
+  operationId: _get_check_type_check_type__check_type_uuid__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /company/{company_uuid}
+  method: get
+  operationId: _get_company_company__company_uuid__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /company/{company_uuid}/check
+  method: post
+  operationId: _request_check_company__company_uuid__check_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /company/{company_uuid}/check
+  method: get
+  operationId: _check_status_company__company_uuid__check_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /me
+  method: get
+  operationId: _get_me_me_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /my_behavior_kits
+  method: get
+  operationId: _get_my_behavior_kits_my_behavior_kits_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /my_check_types
+  method: get
+  operationId: _get_my_check_types_my_check_types_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /my_companies
+  method: get
+  operationId: get_my_companies_my_companies_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /report/{report_uuid}/pdf
+  method: get
+  operationId: _download_report_pdf_report__report_uuid__pdf_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /report/{report_uuid}/person
+  method: get
+  operationId: _get_person_report__report_uuid__person_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /report/{report_uuid}/posts
+  method: get
+  operationId: _get_posts_report__report_uuid__posts_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /report/{report_uuid}/profiles
+  method: get
+  operationId: _get_profiles_report__report_uuid__profiles_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /report/{report_uuid}/summary
+  method: get
+  operationId: _get_summary_report__report_uuid__summary_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /report/{report_uuid}/web_content
+  method: get
+  operationId: _get_web_content_report__report_uuid__web_content_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/checkTypes
+  method: get
+  operationId: get_check_types_api_checkTypes_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/company
+  method: get
+  operationId: get_company_api_company_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/flagKits/all
+  method: get
+  operationId: get_flag_kit_all_api_flagKits_all_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/person
+  method: post
+  operationId: create_person_api_person_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/person/{report_id}
+  method: get
+  operationId: get_person_api_person__report_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/person/{report_id}/all
+  method: get
+  operationId: get_person_all_api_person__report_id__all_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/person/{report_id}/post
+  method: get
+  operationId: get_person_posts_api_person__report_id__post_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/person/{report_id}/profile
+  method: get
+  operationId: get_person_profiles_api_person__report_id__profile_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/person/{report_id}/report
+  method: get
+  operationId: get_report_pdf_api_person__report_id__report_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/person/{report_id}/searchContent
+  method: get
+  operationId: get_person_articles_api_person__report_id__searchContent_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/user
+  method: get
+  operationId: get_user_api_user_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

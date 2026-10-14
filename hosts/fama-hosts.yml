@@ -1,0 +1,79 @@
+generated: '2026-10-14'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 6
+  own: 6
+  other_domain: 0
+  platform: 0
+  roles:
+  - identity
+  - other
+  - portal
+  - status
+  - website
+hosts:
+- host: app.fama.io
+  found_by:
+  - pointer
+  types:
+  - SignUp
+  serves: []
+  registrable_domain: fama.io
+  role: identity
+  relation: own
+- host: developer.fama.io
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - DeveloperPortal
+  - Documentation
+  - APIReference
+  - GettingStarted
+  serves:
+  - docs
+  registrable_domain: fama.io
+  role: portal
+  relation: own
+- host: fama.io
+  found_by:
+  - pointer
+  types:
+  - Support
+  - Blog
+  - Pricing
+  - PrivacyPolicy
+  - Website
+  serves: []
+  registrable_domain: fama.io
+  role: website
+  relation: own
+- host: public-api.fama.io
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: fama.io
+  role: other
+  relation: own
+- host: status.fama.io
+  found_by:
+  - pointer
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: fama.io
+  role: status
+  relation: own
+- host: trust.fama.io
+  found_by:
+  - pointer
+  types:
+  - Compliance
+  serves: []
+  registrable_domain: fama.io
+  role: other
+  relation: own

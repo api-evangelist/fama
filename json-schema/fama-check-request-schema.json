@@ -1,0 +1,515 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fama/main/json-schema/fama-check-request-schema.json",
+  "title": "CheckRequest",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fama-external-interface-openapi.yml#/components/schemas/CheckRequest",
+  "properties": {
+    "person": {
+      "$ref": "#/$defs/external_interface__public_api__interfaces__Person"
+    },
+    "check_types": {
+      "items": {
+        "$ref": "#/$defs/external_interface__public_api__interfaces__CheckTypeRequest"
+      },
+      "type": "array",
+      "minItems": 1,
+      "title": "Check Types"
+    },
+    "profiles": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array",
+      "title": "Profiles",
+      "default": []
+    },
+    "rerun_from_parent_uuid": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Rerun From Parent Uuid"
+    },
+    "qa": {
+      "type": "boolean",
+      "title": "Qa"
+    },
+    "recur": {
+      "$ref": "#/$defs/RecurSchedule"
+    }
+  },
+  "type": "object",
+  "required": [
+    "person",
+    "check_types"
+  ],
+  "$defs": {
+    "Address": {
+      "properties": {
+        "line1": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Line1",
+          "default": ""
+        },
+        "line2": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Line2",
+          "default": ""
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "City",
+          "default": ""
+        },
+        "state": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "State",
+          "default": ""
+        },
+        "zip": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Zip",
+          "default": ""
+        },
+        "country": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Country"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date",
+          "title": "Start Date"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date",
+          "title": "End Date"
+        }
+      },
+      "type": "object",
+      "required": [
+        "country"
+      ],
+      "title": "Address"
+    },
+    "EmailType": {
+      "type": "string",
+      "enum": [
+        "PERSONAL",
+        "PROFESSIONAL"
+      ],
+      "title": "EmailType",
+      "description": "An enumeration."
+    },
+    "Identification": {
+      "properties": {
+        "unique_id": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Unique Id",
+          "description": "SSN, criminal record, etc",
+          "default": ""
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Description",
+          "default": ""
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date",
+          "title": "Start Date"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date",
+          "title": "End Date"
+        }
+      },
+      "type": "object",
+      "title": "Identification"
+    },
+    "InstantFitFields": {
+      "properties": {
+        "job_title": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Job Title",
+          "default": "None"
+        },
+        "job_requisition_number": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Job Requisition Number"
+        },
+        "reference": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Reference"
+        },
+        "assignment": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Assignment"
+        },
+        "writing_sample": {
+          "type": "string",
+          "title": "Writing Sample"
+        }
+      },
+      "type": "object",
+      "required": [
+        "job_requisition_number"
+      ],
+      "title": "InstantFitFields"
+    },
+    "MisconductFields": {
+      "properties": {
+        "custom_id": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Custom Id"
+        },
+        "assessment_id": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Assessment Id"
+        },
+        "job_title": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Job Title"
+        }
+      },
+      "type": "object",
+      "title": "MisconductFields"
+    },
+    "Name": {
+      "properties": {
+        "prefix": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Prefix",
+          "default": ""
+        },
+        "first_name": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "First Name"
+        },
+        "middle_name": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Middle Name",
+          "default": ""
+        },
+        "last_name": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Last Name"
+        },
+        "suffix": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Suffix",
+          "default": ""
+        },
+        "name_type": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/NameType"
+            }
+          ],
+          "default": "MAIN"
+        }
+      },
+      "type": "object",
+      "required": [
+        "first_name",
+        "last_name"
+      ],
+      "title": "Name"
+    },
+    "NameType": {
+      "type": "string",
+      "enum": [
+        "ALIAS",
+        "MAIN"
+      ],
+      "title": "NameType",
+      "description": "An enumeration."
+    },
+    "PhoneType": {
+      "type": "string",
+      "enum": [
+        "PERSONAL",
+        "PROFESSIONAL"
+      ],
+      "title": "PhoneType",
+      "description": "An enumeration."
+    },
+    "RecurSchedule": {
+      "properties": {
+        "schedule_type": {
+          "$ref": "#/$defs/ScheduleType"
+        },
+        "schedule_value": {
+          "type": "string",
+          "title": "Schedule Value"
+        }
+      },
+      "type": "object",
+      "required": [
+        "schedule_type",
+        "schedule_value"
+      ],
+      "title": "RecurSchedule"
+    },
+    "ScheduleType": {
+      "type": "string",
+      "enum": [
+        "cron",
+        "interval",
+        "other"
+      ],
+      "title": "ScheduleType",
+      "description": "An enumeration."
+    },
+    "external_interface__public_api__interfaces__CheckTypeRequest": {
+      "properties": {
+        "check_type_uuid": {
+          "type": "string",
+          "format": "uuid",
+          "title": "Check Type Uuid"
+        },
+        "behavior_kit_uuid": {
+          "type": "string",
+          "format": "uuid",
+          "title": "Behavior Kit Uuid"
+        },
+        "custom_fields": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MisconductFields"
+            },
+            {
+              "$ref": "#/$defs/InstantFitFields"
+            }
+          ],
+          "title": "Custom Fields",
+          "default": {}
+        }
+      },
+      "type": "object",
+      "required": [
+        "check_type_uuid"
+      ],
+      "title": "CheckTypeRequest"
+    },
+    "external_interface__public_api__interfaces__Degree": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Name"
+        },
+        "educator": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Educator"
+        },
+        "country": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Country"
+        },
+        "start_date": {
+          "type": "string",
+          "title": "Start Date"
+        },
+        "end_date": {
+          "type": "string",
+          "title": "End Date"
+        }
+      },
+      "type": "object",
+      "required": [
+        "name",
+        "educator",
+        "country"
+      ],
+      "title": "Degree"
+    },
+    "external_interface__public_api__interfaces__Email": {
+      "properties": {
+        "address": {
+          "type": "string",
+          "format": "email",
+          "title": "Address"
+        },
+        "email_type": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/EmailType"
+            }
+          ],
+          "default": "PERSONAL"
+        }
+      },
+      "type": "object",
+      "required": [
+        "address"
+      ],
+      "title": "Email"
+    },
+    "external_interface__public_api__interfaces__Job": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Title"
+        },
+        "employer": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Employer"
+        },
+        "country": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Country"
+        },
+        "start_date": {
+          "type": "string",
+          "title": "Start Date"
+        },
+        "end_date": {
+          "type": "string",
+          "title": "End Date"
+        }
+      },
+      "type": "object",
+      "required": [
+        "title",
+        "employer",
+        "country"
+      ],
+      "title": "Job"
+    },
+    "external_interface__public_api__interfaces__Person": {
+      "properties": {
+        "person_uuid": {
+          "type": "string",
+          "format": "uuid",
+          "title": "Person Uuid"
+        },
+        "birth_date": {
+          "type": "string",
+          "title": "Birth Date"
+        },
+        "addresses": {
+          "items": {
+            "$ref": "#/$defs/Address"
+          },
+          "type": "array",
+          "title": "Addresses",
+          "default": []
+        },
+        "degrees": {
+          "items": {
+            "$ref": "#/$defs/external_interface__public_api__interfaces__Degree"
+          },
+          "type": "array",
+          "title": "Degrees",
+          "default": []
+        },
+        "emails": {
+          "items": {
+            "$ref": "#/$defs/external_interface__public_api__interfaces__Email"
+          },
+          "type": "array",
+          "minItems": 1,
+          "title": "Emails"
+        },
+        "identifications": {
+          "items": {
+            "$ref": "#/$defs/Identification"
+          },
+          "type": "array",
+          "title": "Identifications",
+          "default": []
+        },
+        "jobs": {
+          "items": {
+            "$ref": "#/$defs/external_interface__public_api__interfaces__Job"
+          },
+          "type": "array",
+          "title": "Jobs",
+          "default": []
+        },
+        "names": {
+          "items": {
+            "$ref": "#/$defs/Name"
+          },
+          "type": "array",
+          "minItems": 1,
+          "title": "Names"
+        },
+        "phones": {
+          "items": {
+            "$ref": "#/$defs/external_interface__public_api__interfaces__Phone"
+          },
+          "type": "array",
+          "title": "Phones",
+          "default": []
+        }
+      },
+      "type": "object",
+      "required": [
+        "emails",
+        "names"
+      ],
+      "title": "Person"
+    },
+    "external_interface__public_api__interfaces__Phone": {
+      "properties": {
+        "raw_number": {
+          "type": "string",
+          "maxLength": 255,
+          "title": "Raw Number"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date",
+          "title": "Start Date"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date",
+          "title": "End Date"
+        },
+        "phone_type": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/PhoneType"
+            }
+          ],
+          "default": "PERSONAL"
+        }
+      },
+      "type": "object",
+      "required": [
+        "raw_number"
+      ],
+      "title": "Phone"
+    }
+  }
+}

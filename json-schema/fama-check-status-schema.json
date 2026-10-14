@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fama/main/json-schema/fama-check-status-schema.json",
+  "title": "CheckStatus",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/fama-external-interface-openapi.yml#/components/schemas/CheckStatus",
+  "properties": {
+    "report_uuid": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Report Uuid"
+    },
+    "client_report_id": {
+      "type": "string",
+      "title": "Client Report Id"
+    },
+    "name": {
+      "type": "string",
+      "title": "Name"
+    },
+    "company_uuid": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Company Uuid"
+    },
+    "parent_company_uuid": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Parent Company Uuid"
+    },
+    "check_type_uuid": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Check Type Uuid"
+    },
+    "behavior_kit_uuid": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Behavior Kit Uuid"
+    },
+    "status": {
+      "$ref": "#/$defs/fama_interfaces__workflow_dal__Status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+    },
+    "finished_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Finished At"
+    }
+  },
+  "type": "object",
+  "required": [
+    "report_uuid",
+    "client_report_id",
+    "name",
+    "company_uuid",
+    "check_type_uuid",
+    "status",
+    "created_at"
+  ],
+  "$defs": {
+    "fama_interfaces__workflow_dal__Status": {
+      "type": "string",
+      "enum": [
+        "TO_DO",
+        "IN_PROGRESS",
+        "DONE",
+        "FAILED",
+        "TIMEOUT",
+        "CANCELLED"
+      ],
+      "title": "Status",
+      "description": "An enumeration."
+    }
+  }
+}
