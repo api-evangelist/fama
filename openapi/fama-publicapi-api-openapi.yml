@@ -1,13 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fama External Interface
+  title: Fama External Interface Public API
   description: Public endpoints.
   version: dev
-security:
-- bearerAuth: []
 servers:
 - url: https://public-api-sandbox.fama.io
   description: Sandbox server for testing
+security:
+- bearerAuth: []
+tags:
+- name: PublicAPI
+  description: endpoints intended for direct use
 paths:
   /behavior_kit/{behavior_kit_uuid}:
     get:
@@ -815,193 +818,6 @@ paths:
         - language: curl
           name: Get available check types
           code: "curl --request GET \\\n  --url 'https://public-api-sandbox.fama.io/my_check_types?company_uuid=123e4567-e89b-12d3-a456-426614174000' \\\n  --header 'Authorization: Bearer YOUR_API_TOKEN'"
-  /my_companies:
-    get:
-      tags:
-      - Report
-      summary: Get My Companies
-      description: Retrieve the companies available to your account, filter results by company name, and use pagination to page through large result sets.
-      operationId: get_my_companies_my_companies_get
-      parameters:
-      - description: Which page of companies to fetch. Defaults to `1`.
-        required: false
-        schema:
-          title: Page
-          type: integer
-          description: Which page of companies to fetch. Defaults to `1`.
-          default: 1
-        name: page
-        in: query
-        examples:
-          firstPage:
-            summary: First page
-            value: 1
-      - description: Number of companies to return per page. Defaults to `50`.
-        required: false
-        schema:
-          title: Size
-          type: integer
-          description: Number of companies to return per page. Defaults to `50`.
-          default: 50
-        name: size
-        in: query
-        examples:
-          defaultPageSize:
-            summary: Default page size
-            value: 50
-      - description: Optional search string used to filter companies by name.
-        required: false
-        schema:
-          title: Search
-          type: string
-          description: Optional search string used to filter companies by name.
-          default: ''
-        name: search
-        in: query
-        examples:
-          companyNameSearch:
-            summary: Search by company name
-            value: Acme
-      responses:
-        '200':
-          description: Successful Response
-          content:
-            application/json:
-              schema:
-                title: Page[CompanySubCompanyDetails]
-                required:
-                - items
-                - total
-                - page
-                - size
-                type: object
-                properties:
-                  items:
-                    title: Items
-                    type: array
-                    description: List of companies available to your account for the requested page.
-                    items:
-                      title: CompanySubCompanyDetails
-                      required:
-                      - company_uuid
-                      - name
-                      - workflow
-                      - blueprint
-                      type: object
-                      properties:
-                        company_uuid:
-                          title: Company Uuid
-                          type: string
-                          format: uuid
-                          description: Unique identifier for the company.
-                        parent_company_uuid:
-                          title: Parent Company Uuid
-                          type: string
-                          format: uuid
-                          description: Unique identifier for the parent company, when the company is a sub-company.
-                        name:
-                          title: Name
-                          maxLength: 255
-                          minLength: 1
-                          type: string
-                          description: Company name.
-                        workflow:
-                          title: Workflow
-                          type: array
-                          description: Workflow UUIDs associated with the company.
-                          items:
-                            type: string
-                            format: uuid
-                        blueprint:
-                          title: Blueprint
-                          type: array
-                          description: Blueprint UUIDs associated with the company.
-                          items:
-                            type: string
-                            format: uuid
-                        is_active:
-                          title: Is Active
-                          type: boolean
-                          description: Whether the company is active.
-                          default: true
-                  total:
-                    title: Total
-                    minimum: 0
-                    type: integer
-                    description: Total number of companies that match the request.
-                  page:
-                    title: Page
-                    minimum: 1
-                    type: integer
-                    description: Current page number returned.
-                  size:
-                    title: Size
-                    minimum: 1
-                    type: integer
-                    description: Number of companies requested per page.
-              examples:
-                companies:
-                  summary: Company results
-                  value:
-                    items:
-                    - company_uuid: 123e4567-e89b-12d3-a456-426614174000
-                      parent_company_uuid: 223e4567-e89b-12d3-a456-426614174000
-                      name: Acme Corporation
-                      workflow:
-                      - 323e4567-e89b-12d3-a456-426614174000
-                      blueprint:
-                      - 423e4567-e89b-12d3-a456-426614174000
-                      is_active: true
-                    total: 1
-                    page: 1
-                    size: 50
-        '422':
-          description: Validation Error
-          content:
-            application/json:
-              schema:
-                title: HTTPValidationError
-                type: object
-                properties:
-                  detail:
-                    title: Detail
-                    type: array
-                    items:
-                      title: ValidationError
-                      required:
-                      - loc
-                      - msg
-                      - type
-                      type: object
-                      properties:
-                        loc:
-                          title: Location
-                          type: array
-                          items:
-                            oneOf:
-                            - type: string
-                            - type: integer
-                        msg:
-                          title: Message
-                          type: string
-                        type:
-                          title: Error Type
-                          type: string
-              examples:
-                invalidPage:
-                  summary: Invalid page value
-                  value:
-                    detail:
-                    - loc:
-                      - query
-                      - page
-                      msg: value is not a valid integer
-                      type: type_error.integer
-      x-readme:
-        code-samples:
-        - language: curl
-          name: Get companies
-          code: "curl --request GET \\\n  --url 'https://api.sandbox.service.fama.io/my_companies?page=1&size=50&search=Acme' \\\n  --header 'Authorization: Bearer YOUR_API_TOKEN'"
   /report/{report_uuid}/pdf:
     get:
       tags:
@@ -2087,6 +1903,157 @@ paths:
           code: "curl --request GET \\\n  --url 'https://public-api-sandbox.fama.io/report/123e4567-e89b-12d3-a456-426614174000/web_content?page=1&size=50' \\\n  --header 'Authorization: Bearer YOUR_API_TOKEN'"
 components:
   schemas:
+    CheckRequest:
+      properties:
+        person:
+          $ref: '#/components/schemas/external_interface__public_api__interfaces__Person'
+        check_types:
+          items:
+            $ref: '#/components/schemas/external_interface__public_api__interfaces__CheckTypeRequest'
+          type: array
+          minItems: 1
+          title: Check Types
+        profiles:
+          items:
+            type: string
+          type: array
+          title: Profiles
+          default: []
+        rerun_from_parent_uuid:
+          type: string
+          format: uuid
+          title: Rerun From Parent Uuid
+        qa:
+          type: boolean
+          title: Qa
+        recur:
+          $ref: '#/components/schemas/RecurSchedule'
+      type: object
+      required:
+      - person
+      - check_types
+      title: CheckRequest
+    fama_interfaces__workflow_dal__Status:
+      type: string
+      enum:
+      - TO_DO
+      - IN_PROGRESS
+      - DONE
+      - FAILED
+      - TIMEOUT
+      - CANCELLED
+      title: Status
+      description: An enumeration.
+    InstantFitFields:
+      properties:
+        job_title:
+          type: string
+          maxLength: 255
+          title: Job Title
+          default: None
+        job_requisition_number:
+          type: string
+          maxLength: 255
+          title: Job Requisition Number
+        reference:
+          type: string
+          maxLength: 255
+          title: Reference
+        assignment:
+          type: string
+          maxLength: 255
+          title: Assignment
+        writing_sample:
+          type: string
+          title: Writing Sample
+      type: object
+      required:
+      - job_requisition_number
+      title: InstantFitFields
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ScheduleType:
+      type: string
+      enum:
+      - cron
+      - interval
+      - other
+      title: ScheduleType
+      description: An enumeration.
+    EmailType:
+      type: string
+      enum:
+      - PERSONAL
+      - PROFESSIONAL
+      title: EmailType
+      description: An enumeration.
+    CheckStatus:
+      properties:
+        report_uuid:
+          type: string
+          format: uuid
+          title: Report Uuid
+        client_report_id:
+          type: string
+          title: Client Report Id
+        name:
+          type: string
+          title: Name
+        company_uuid:
+          type: string
+          format: uuid
+          title: Company Uuid
+        parent_company_uuid:
+          type: string
+          format: uuid
+          title: Parent Company Uuid
+        check_type_uuid:
+          type: string
+          format: uuid
+          title: Check Type Uuid
+        behavior_kit_uuid:
+          type: string
+          format: uuid
+          title: Behavior Kit Uuid
+        status:
+          $ref: '#/components/schemas/fama_interfaces__workflow_dal__Status'
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        finished_at:
+          type: string
+          format: date-time
+          title: Finished At
+      type: object
+      required:
+      - report_uuid
+      - client_report_id
+      - name
+      - company_uuid
+      - check_type_uuid
+      - status
+      - created_at
+      title: CheckStatus
     Address:
       properties:
         line1:
@@ -2130,57 +2097,6 @@ components:
       required:
       - country
       title: Address
-    CheckRequest:
-      properties:
-        person:
-          $ref: '#/components/schemas/external_interface__public_api__interfaces__Person'
-        check_types:
-          items:
-            $ref: '#/components/schemas/external_interface__public_api__interfaces__CheckTypeRequest'
-          type: array
-          minItems: 1
-          title: Check Types
-        profiles:
-          items:
-            type: string
-          type: array
-          title: Profiles
-          default: []
-        rerun_from_parent_uuid:
-          type: string
-          format: uuid
-          title: Rerun From Parent Uuid
-        qa:
-          type: boolean
-          title: Qa
-        recur:
-          $ref: '#/components/schemas/RecurSchedule'
-      type: object
-      required:
-      - person
-      - check_types
-      title: CheckRequest
-    CheckResponse:
-      properties:
-        report_uuid:
-          type: string
-          format: uuid
-          title: Report Uuid
-        message:
-          type: string
-          title: Message
-      type: object
-      required:
-      - report_uuid
-      - message
-      title: CheckResponse
-    EmailType:
-      type: string
-      enum:
-      - PERSONAL
-      - PROFESSIONAL
-      title: EmailType
-      description: An enumeration.
     HTTPValidationError:
       properties:
         detail:
@@ -2190,55 +2106,13 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    Identification:
-      properties:
-        unique_id:
-          type: string
-          maxLength: 255
-          title: Unique Id
-          description: SSN, criminal record, etc
-          default: ''
-        description:
-          type: string
-          maxLength: 255
-          title: Description
-          default: ''
-        start_date:
-          type: string
-          format: date
-          title: Start Date
-        end_date:
-          type: string
-          format: date
-          title: End Date
-      type: object
-      title: Identification
-    InstantFitFields:
-      properties:
-        job_title:
-          type: string
-          maxLength: 255
-          title: Job Title
-          default: None
-        job_requisition_number:
-          type: string
-          maxLength: 255
-          title: Job Requisition Number
-        reference:
-          type: string
-          maxLength: 255
-          title: Reference
-        assignment:
-          type: string
-          maxLength: 255
-          title: Assignment
-        writing_sample:
-          type: string
-          title: Writing Sample
-      type: object
-      required:
-      - job_requisition_number
-      title: InstantFitFields
+    NameType:
+      type: string
+      enum:
+      - ALIAS
+      - MAIN
+      title: NameType
+      description: An enumeration.
     MisconductFields:
       properties:
         custom_id:
@@ -2255,181 +2129,6 @@ components:
           title: Job Title
       type: object
       title: MisconductFields
-    Name:
-      properties:
-        prefix:
-          type: string
-          maxLength: 255
-          title: Prefix
-          default: ''
-        first_name:
-          type: string
-          maxLength: 255
-          title: First Name
-        middle_name:
-          type: string
-          maxLength: 255
-          title: Middle Name
-          default: ''
-        last_name:
-          type: string
-          maxLength: 255
-          title: Last Name
-        suffix:
-          type: string
-          maxLength: 255
-          title: Suffix
-          default: ''
-        name_type:
-          allOf:
-          - $ref: '#/components/schemas/NameType'
-          default: MAIN
-      type: object
-      required:
-      - first_name
-      - last_name
-      title: Name
-    NameType:
-      type: string
-      enum:
-      - ALIAS
-      - MAIN
-      title: NameType
-      description: An enumeration.
-    PhoneType:
-      type: string
-      enum:
-      - PERSONAL
-      - PROFESSIONAL
-      title: PhoneType
-      description: An enumeration.
-    RecurSchedule:
-      properties:
-        schedule_type:
-          $ref: '#/components/schemas/ScheduleType'
-        schedule_value:
-          type: string
-          title: Schedule Value
-      type: object
-      required:
-      - schedule_type
-      - schedule_value
-      title: RecurSchedule
-    ScheduleType:
-      type: string
-      enum:
-      - cron
-      - interval
-      - other
-      title: ScheduleType
-      description: An enumeration.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    external_interface__public_api__interfaces__CheckTypeRequest:
-      properties:
-        check_type_uuid:
-          type: string
-          format: uuid
-          title: Check Type Uuid
-        behavior_kit_uuid:
-          type: string
-          format: uuid
-          title: Behavior Kit Uuid
-        custom_fields:
-          anyOf:
-          - $ref: '#/components/schemas/MisconductFields'
-          - $ref: '#/components/schemas/InstantFitFields'
-          title: Custom Fields
-          default: {}
-      type: object
-      required:
-      - check_type_uuid
-      title: CheckTypeRequest
-    external_interface__public_api__interfaces__Degree:
-      properties:
-        name:
-          type: string
-          maxLength: 255
-          title: Name
-        educator:
-          type: string
-          maxLength: 255
-          title: Educator
-        country:
-          type: string
-          maxLength: 255
-          title: Country
-        start_date:
-          type: string
-          title: Start Date
-        end_date:
-          type: string
-          title: End Date
-      type: object
-      required:
-      - name
-      - educator
-      - country
-      title: Degree
-    external_interface__public_api__interfaces__Email:
-      properties:
-        address:
-          type: string
-          format: email
-          title: Address
-        email_type:
-          allOf:
-          - $ref: '#/components/schemas/EmailType'
-          default: PERSONAL
-      type: object
-      required:
-      - address
-      title: Email
-    external_interface__public_api__interfaces__Job:
-      properties:
-        title:
-          type: string
-          maxLength: 255
-          title: Title
-        employer:
-          type: string
-          maxLength: 255
-          title: Employer
-        country:
-          type: string
-          maxLength: 255
-          title: Country
-        start_date:
-          type: string
-          title: Start Date
-        end_date:
-          type: string
-          title: End Date
-      type: object
-      required:
-      - title
-      - employer
-      - country
-      title: Job
     external_interface__public_api__interfaces__Person:
       properties:
         person_uuid:
@@ -2508,26 +2207,8 @@ components:
       required:
       - raw_number
       title: Phone
-    CheckStatus:
+    external_interface__public_api__interfaces__CheckTypeRequest:
       properties:
-        report_uuid:
-          type: string
-          format: uuid
-          title: Report Uuid
-        client_report_id:
-          type: string
-          title: Client Report Id
-        name:
-          type: string
-          title: Name
-        company_uuid:
-          type: string
-          format: uuid
-          title: Company Uuid
-        parent_company_uuid:
-          type: string
-          format: uuid
-          title: Parent Company Uuid
         check_type_uuid:
           type: string
           format: uuid
@@ -2536,44 +2217,176 @@ components:
           type: string
           format: uuid
           title: Behavior Kit Uuid
-        status:
-          $ref: '#/components/schemas/fama_interfaces__workflow_dal__Status'
-        created_at:
+        custom_fields:
+          anyOf:
+          - $ref: '#/components/schemas/MisconductFields'
+          - $ref: '#/components/schemas/InstantFitFields'
+          title: Custom Fields
+          default: {}
+      type: object
+      required:
+      - check_type_uuid
+      title: CheckTypeRequest
+    external_interface__public_api__interfaces__Degree:
+      properties:
+        name:
           type: string
-          format: date-time
-          title: Created At
-        finished_at:
+          maxLength: 255
+          title: Name
+        educator:
           type: string
-          format: date-time
-          title: Finished At
+          maxLength: 255
+          title: Educator
+        country:
+          type: string
+          maxLength: 255
+          title: Country
+        start_date:
+          type: string
+          title: Start Date
+        end_date:
+          type: string
+          title: End Date
+      type: object
+      required:
+      - name
+      - educator
+      - country
+      title: Degree
+    RecurSchedule:
+      properties:
+        schedule_type:
+          $ref: '#/components/schemas/ScheduleType'
+        schedule_value:
+          type: string
+          title: Schedule Value
+      type: object
+      required:
+      - schedule_type
+      - schedule_value
+      title: RecurSchedule
+    external_interface__public_api__interfaces__Job:
+      properties:
+        title:
+          type: string
+          maxLength: 255
+          title: Title
+        employer:
+          type: string
+          maxLength: 255
+          title: Employer
+        country:
+          type: string
+          maxLength: 255
+          title: Country
+        start_date:
+          type: string
+          title: Start Date
+        end_date:
+          type: string
+          title: End Date
+      type: object
+      required:
+      - title
+      - employer
+      - country
+      title: Job
+    CheckResponse:
+      properties:
+        report_uuid:
+          type: string
+          format: uuid
+          title: Report Uuid
+        message:
+          type: string
+          title: Message
       type: object
       required:
       - report_uuid
-      - client_report_id
-      - name
-      - company_uuid
-      - check_type_uuid
-      - status
-      - created_at
-      title: CheckStatus
-    fama_interfaces__workflow_dal__Status:
+      - message
+      title: CheckResponse
+    PhoneType:
       type: string
       enum:
-      - TO_DO
-      - IN_PROGRESS
-      - DONE
-      - FAILED
-      - TIMEOUT
-      - CANCELLED
-      title: Status
+      - PERSONAL
+      - PROFESSIONAL
+      title: PhoneType
       description: An enumeration.
+    Identification:
+      properties:
+        unique_id:
+          type: string
+          maxLength: 255
+          title: Unique Id
+          description: SSN, criminal record, etc
+          default: ''
+        description:
+          type: string
+          maxLength: 255
+          title: Description
+          default: ''
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+        end_date:
+          type: string
+          format: date
+          title: End Date
+      type: object
+      title: Identification
+    external_interface__public_api__interfaces__Email:
+      properties:
+        address:
+          type: string
+          format: email
+          title: Address
+        email_type:
+          allOf:
+          - $ref: '#/components/schemas/EmailType'
+          default: PERSONAL
+      type: object
+      required:
+      - address
+      title: Email
+    Name:
+      properties:
+        prefix:
+          type: string
+          maxLength: 255
+          title: Prefix
+          default: ''
+        first_name:
+          type: string
+          maxLength: 255
+          title: First Name
+        middle_name:
+          type: string
+          maxLength: 255
+          title: Middle Name
+          default: ''
+        last_name:
+          type: string
+          maxLength: 255
+          title: Last Name
+        suffix:
+          type: string
+          maxLength: 255
+          title: Suffix
+          default: ''
+        name_type:
+          allOf:
+          - $ref: '#/components/schemas/NameType'
+          default: MAIN
+      type: object
+      required:
+      - first_name
+      - last_name
+      title: Name
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-tags:
-- name: PublicAPI
-  description: endpoints intended for direct use
 x-provenance:
   method: searched
   source: https://developer.fama.io/reference

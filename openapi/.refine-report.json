@@ -1,0 +1,30 @@
+{
+  "provider": "fama",
+  "sources": [
+    "fama-external-interface-openapi.yml",
+    "fama-public-api-openapi.yml"
+  ],
+  "outputs": [
+    "fama-publicapi-api-openapi.yml",
+    "fama-report-api-openapi.yml",
+    "fama-public-endpoints-api-openapi.yml"
+  ],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation",
+    "archived openapi/fama-external-interface-openapi.yml"
+  ],
+  "errors": [],
+  "warnings": [
+    "fama-public-api-openapi.yml: previously refined output kept for 11 operation(s) no archived document covers (e.g. /api/checkTypes get, /api/company get, /api/flagKits/all get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
+  ],
+  "notes": [
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "fama-external-interface-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "fama-external-interface-openapi.yml: declared missing tag: Report",
+    "fama-public-api-openapi.yml: upgraded openapi 3.0.2 -> OpenAPI 3.2.0",
+    "fama-public-api-openapi.yml: declared missing tag: Public Endpoints",
+    "superseded outputs removed: fama-public-api-openapi.yml",
+    "apis.yml register: written (+3 apis, 4 total)"
+  ],
+  "skipped": []
+}

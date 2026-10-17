@@ -1,0 +1,231 @@
+openapi: 3.2.0
+info:
+  title: Fama External Interface Report API
+  description: Public endpoints.
+  version: dev
+servers:
+- url: https://public-api-sandbox.fama.io
+  description: Sandbox server for testing
+security:
+- bearerAuth: []
+tags:
+- name: Report
+paths:
+  /my_companies:
+    get:
+      tags:
+      - Report
+      summary: Get My Companies
+      description: Retrieve the companies available to your account, filter results by company name, and use pagination to page through large result sets.
+      operationId: get_my_companies_my_companies_get
+      parameters:
+      - description: Which page of companies to fetch. Defaults to `1`.
+        required: false
+        schema:
+          title: Page
+          type: integer
+          description: Which page of companies to fetch. Defaults to `1`.
+          default: 1
+        name: page
+        in: query
+        examples:
+          firstPage:
+            summary: First page
+            value: 1
+      - description: Number of companies to return per page. Defaults to `50`.
+        required: false
+        schema:
+          title: Size
+          type: integer
+          description: Number of companies to return per page. Defaults to `50`.
+          default: 50
+        name: size
+        in: query
+        examples:
+          defaultPageSize:
+            summary: Default page size
+            value: 50
+      - description: Optional search string used to filter companies by name.
+        required: false
+        schema:
+          title: Search
+          type: string
+          description: Optional search string used to filter companies by name.
+          default: ''
+        name: search
+        in: query
+        examples:
+          companyNameSearch:
+            summary: Search by company name
+            value: Acme
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: Page[CompanySubCompanyDetails]
+                required:
+                - items
+                - total
+                - page
+                - size
+                type: object
+                properties:
+                  items:
+                    title: Items
+                    type: array
+                    description: List of companies available to your account for the requested page.
+                    items:
+                      title: CompanySubCompanyDetails
+                      required:
+                      - company_uuid
+                      - name
+                      - workflow
+                      - blueprint
+                      type: object
+                      properties:
+                        company_uuid:
+                          title: Company Uuid
+                          type: string
+                          format: uuid
+                          description: Unique identifier for the company.
+                        parent_company_uuid:
+                          title: Parent Company Uuid
+                          type: string
+                          format: uuid
+                          description: Unique identifier for the parent company, when the company is a sub-company.
+                        name:
+                          title: Name
+                          maxLength: 255
+                          minLength: 1
+                          type: string
+                          description: Company name.
+                        workflow:
+                          title: Workflow
+                          type: array
+                          description: Workflow UUIDs associated with the company.
+                          items:
+                            type: string
+                            format: uuid
+                        blueprint:
+                          title: Blueprint
+                          type: array
+                          description: Blueprint UUIDs associated with the company.
+                          items:
+                            type: string
+                            format: uuid
+                        is_active:
+                          title: Is Active
+                          type: boolean
+                          description: Whether the company is active.
+                          default: true
+                  total:
+                    title: Total
+                    minimum: 0
+                    type: integer
+                    description: Total number of companies that match the request.
+                  page:
+                    title: Page
+                    minimum: 1
+                    type: integer
+                    description: Current page number returned.
+                  size:
+                    title: Size
+                    minimum: 1
+                    type: integer
+                    description: Number of companies requested per page.
+              examples:
+                companies:
+                  summary: Company results
+                  value:
+                    items:
+                    - company_uuid: 123e4567-e89b-12d3-a456-426614174000
+                      parent_company_uuid: 223e4567-e89b-12d3-a456-426614174000
+                      name: Acme Corporation
+                      workflow:
+                      - 323e4567-e89b-12d3-a456-426614174000
+                      blueprint:
+                      - 423e4567-e89b-12d3-a456-426614174000
+                      is_active: true
+                    total: 1
+                    page: 1
+                    size: 50
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                title: HTTPValidationError
+                type: object
+                properties:
+                  detail:
+                    title: Detail
+                    type: array
+                    items:
+                      title: ValidationError
+                      required:
+                      - loc
+                      - msg
+                      - type
+                      type: object
+                      properties:
+                        loc:
+                          title: Location
+                          type: array
+                          items:
+                            oneOf:
+                            - type: string
+                            - type: integer
+                        msg:
+                          title: Message
+                          type: string
+                        type:
+                          title: Error Type
+                          type: string
+              examples:
+                invalidPage:
+                  summary: Invalid page value
+                  value:
+                    detail:
+                    - loc:
+                      - query
+                      - page
+                      msg: value is not a valid integer
+                      type: type_error.integer
+      x-readme:
+        code-samples:
+        - language: curl
+          name: Get companies
+          code: "curl --request GET \\\n  --url 'https://api.sandbox.service.fama.io/my_companies?page=1&size=50&search=Acme' \\\n  --header 'Authorization: Bearer YOUR_API_TOKEN'"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+x-provenance:
+  method: searched
+  source: https://developer.fama.io/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://developer.fama.io/reference/_check_status_company__company_uuid__check_get.md
+  - https://developer.fama.io/reference/_download_report_pdf_report__report_uuid__pdf_get.md
+  - https://developer.fama.io/reference/_get_behavior_kit_behavior_kit__behavior_kit_uuid__get.md
+  - https://developer.fama.io/reference/_get_check_type_check_type__check_type_uuid__get.md
+  - https://developer.fama.io/reference/_get_company_company__company_uuid__get.md
+  - https://developer.fama.io/reference/_get_me_me_get.md
+  - https://developer.fama.io/reference/_get_my_behavior_kits_my_behavior_kits_get.md
+  - https://developer.fama.io/reference/_get_my_check_types_my_check_types_get.md
+  - https://developer.fama.io/reference/_get_my_companies_my_companies_get.md
+  - https://developer.fama.io/reference/_get_person_report__report_uuid__person_get.md
+  - https://developer.fama.io/reference/_get_posts_report__report_uuid__posts_get.md
+  - https://developer.fama.io/reference/_get_profiles_report__report_uuid__profiles_get.md
+  - https://developer.fama.io/reference/_get_summary_report__report_uuid__summary_get.md
+  - https://developer.fama.io/reference/_get_web_content_report__report_uuid__web_content_get.md
+  - https://developer.fama.io/reference/_request_check_company__company_uuid__check_post.md
+  merge:
+    pages: 15
+    deduped: 16
+    conflicts_kept_first: 0

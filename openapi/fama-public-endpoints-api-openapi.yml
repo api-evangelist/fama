@@ -1,7 +1,13 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Fama Public API
-  description: "Exchanges existing \"Core\" Basic Auth for an \"Ossa\" API token for use with Public API endpoints.  \nThis is typically only useful for API customers migrating from the deprecated \"Core\" platform. It will yield an API token for use in bearer Authorization header.\nNew and Migrated API users can simply retrieve their API token from their [Company Page](https://v3-ui.sandbox.service.fama.io/#/companies) in the Ossa Application.  \nFor access to our sandbox environment, please [request sandbox access](https://developer.fama.io/sandbox/request-sandbox-access/).\n"
+  title: Fama Public Public Endpoints API
+  description: 'Exchanges existing "Core" Basic Auth for an "Ossa" API token for use with Public API endpoints.
+
+    This is typically only useful for API customers migrating from the deprecated "Core" platform. It will yield an API token for use in bearer Authorization header.
+
+    New and Migrated API users can simply retrieve their API token from their Company Page in the Ossa Application.
+
+    For access to our sandbox environment, please request sandbox access.'
   version: dev
   contact:
     url: https://fama.readme.io
@@ -11,6 +17,8 @@ servers:
   description: Sandbox server for testing
 security:
 - bearerAuth: []
+tags:
+- name: Public Endpoints
 paths:
   /api/checkTypes:
     get:
@@ -1245,38 +1253,45 @@ paths:
                     type: boolean
                   percentAccepted:
                     title: Percentaccepted
-                    type: integer
-                    nullable: true
+                    type:
+                    - integer
+                    - 'null'
                     default: null
                   permission:
                     title: Permission
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     default: null
                   permissions:
                     title: Permissions
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     default: null
                   processingMetrics:
                     title: Processingmetrics
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     default: null
                   profiles:
                     title: Profiles
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     default: null
                   priority:
                     title: Priority
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     default: null
                   visiblePriority:
                     title: Visiblepriority
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     default: null
                   contractId:
                     title: Contractid
@@ -1726,38 +1741,45 @@ paths:
                       type: boolean
                     percentAccepted:
                       title: Percentaccepted
-                      type: integer
-                      nullable: true
+                      type:
+                      - integer
+                      - 'null'
                       default: null
                     permission:
                       title: Permission
-                      type: string
-                      nullable: true
+                      type:
+                      - string
+                      - 'null'
                       default: null
                     permissions:
                       title: Permissions
-                      type: string
-                      nullable: true
+                      type:
+                      - string
+                      - 'null'
                       default: null
                     processingMetrics:
                       title: Processingmetrics
-                      type: string
-                      nullable: true
+                      type:
+                      - string
+                      - 'null'
                       default: null
                     profiles:
                       title: Profiles
-                      type: string
-                      nullable: true
+                      type:
+                      - string
+                      - 'null'
                       default: null
                     priority:
                       title: Priority
-                      type: string
-                      nullable: true
+                      type:
+                      - string
+                      - 'null'
                       default: null
                     visiblePriority:
                       title: Visiblepriority
-                      type: string
-                      nullable: true
+                      type:
+                      - string
+                      - 'null'
                       default: null
                     contractId:
                       title: Contractid

@@ -170,8 +170,10 @@ common:
 
 apis:
 - name: Fama REST API
-  description: v2 REST API for submitting candidate screening checks and retrieving report findings (person, profiles, posts, web content, summary,
-    and signed PDF). Bearer-token auth; report completion via HTTP callback or polling.
+  description: >-
+    v2 REST API for submitting candidate screening checks and retrieving report findings (person, profiles,
+    posts, web content, summary, and signed PDF). Bearer-token auth; report completion via HTTP callback
+    or polling.
   humanURL: https://developer.fama.io/reference/fama-rest-api
   baseURL: https://public-api.fama.io
   properties:
@@ -182,7 +184,23 @@ apis:
   - type: Authentication
     url: authentication/fama-authentication.yml
   aid: fama:fama-rest-api
-- aid: fama:fama-external-interface
+- aid: fama:fama-public-endpoints-api
+  name: Fama Public Endpoints API
+  description: The Public Endpoints API from Fama — 11 operation(s) for public endpoints.
+  humanURL: https://developer.fama.io/reference/fama-rest-api
+  baseURL: https://public-api.fama.io
+  tags:
+  - Public Endpoints
+  properties:
+  - type: OpenAPI
+    url: openapi/fama-public-endpoints-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/fama-check-status-schema.json
+  - type: JSONSchema
+    url: json-schema/fama-check-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fama-check-response-schema.json
+- aid: fama:fama-publicapi-api
   name: Fama Public API
   description: endpoints intended for direct use
   humanURL: https://developer.fama.io/reference/fama-rest-api
@@ -191,24 +209,29 @@ apis:
   - PublicAPI
   properties:
   - type: OpenAPI
-    url: openapi/fama-external-interface-openapi.yml
+    url: openapi/fama-publicapi-api-openapi.yml
   - type: JSONSchema
     url: json-schema/fama-check-status-schema.json
   - type: JSONSchema
     url: json-schema/fama-check-request-schema.json
   - type: JSONSchema
     url: json-schema/fama-check-response-schema.json
-- aid: fama:fama-public-api
-  name: Fama Public API
-  description: The Public API from Fama — 11 operation(s) for public.
+- aid: fama:fama-report-api
+  name: Fama Report API
+  description: The Report API from Fama — 1 operation(s) for report.
   humanURL: https://developer.fama.io/reference/fama-rest-api
   baseURL: https://public-api.fama.io
   tags:
-  - Public
+  - Report
   properties:
   - type: OpenAPI
-    url: openapi/fama-public-api-openapi.yml
-
+    url: openapi/fama-report-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/fama-check-status-schema.json
+  - type: JSONSchema
+    url: json-schema/fama-check-request-schema.json
+  - type: JSONSchema
+    url: json-schema/fama-check-response-schema.json
 x-enrichment:
   date: '2026-07-19'
   status: backfilled
