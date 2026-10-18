@@ -206,6 +206,8 @@ apis:
   humanURL: https://developer.fama.io/reference/fama-rest-api
   baseURL: https://public-api.fama.io
   tags:
+  - Public APIs
+  tags_raw:
   - PublicAPI
   properties:
   - type: OpenAPI
