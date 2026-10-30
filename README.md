@@ -64,6 +64,151 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Fama is a company surfaced as a portfolio company of bullpen-capital and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Fama is an AI-powered social media and online screening platform for employment decisions. Its REST API lets HR platforms and background-screening providers submit candidate checks and retrieve behavioral findings — flagged posts, web content, and social profiles — mapped to workplace-misconduct categories across 30+ languages while filtering out protected-class information for EEOC/FCRA-aligned adjudication. Reports are delivered via completion callbacks or polling as JSON or a signed PDF, powering pre-employment screening (Fama Plus), comprehensive candidate assessment (Fama 360), and ongoing employee monitoring (Fama Pulse).
 
-Backed by: bullpen-capital — https://fama.io
+**Areas:** Company · Employment Screening · Background Checks · Human Resources · Social Media · Risk Management · Compliance · Artificial Intelligence
+
+## Fama on APIs.io
+
+Everything profiled for Fama is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/fama/](https://apis.io/providers/fama/)** — or go straight to one of the APIs or properties below.
+
+### APIs (4)
+
+- [Fama REST API](https://apis.io/apis/fama/fama-rest-api/) — v2 REST API for submitting candidate screening checks and retrieving report findings (person, profiles, posts, web content, summary, and signed PDF).…
+- [Fama Public Endpoints API](https://apis.io/apis/fama/fama-public-endpoints-api/) — The Public Endpoints API from Fama — 11 operation(s) for public endpoints.
+- [Fama Public API](https://apis.io/apis/fama/fama-publicapi-api/) — endpoints intended for direct use
+- [Fama Report API](https://apis.io/apis/fama/fama-report-api/) — The Report API from Fama — 1 operation(s) for report.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Fama Webhooks](https://apis.io/asyncapis/fama/fama-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [fama](https://apis.io/servers/fama/fama/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Fama Agentic Access](https://apis.io/agentic-access/fama/fama-agentic-access/)
+
+#### JSON Schema (3)
+
+The data models the API reads and writes.
+
+- [CheckRequest](https://apis.io/schemas/fama/fama-check-request/)
+- [CheckResponse](https://apis.io/schemas/fama/fama-check-response/)
+- [CheckStatus](https://apis.io/schemas/fama/fama-check-status/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Fama Context](https://apis.io/jsonld/fama/fama-context/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Fama API Rules](https://apis.io/rules/fama/fama-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Fama Authentication](https://apis.io/security/fama/fama-authentication/)
+- [Fama Domain Security](https://apis.io/security/fama/fama-domain-security/)
+- [Fama Trust Center](https://apis.io/security/fama/fama-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Fama Plans Pricing](https://apis.io/plans/fama/fama-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Fama Rate Limits](https://apis.io/rate-limits/fama/fama-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://fama.io)
+- [Documentation](https://developer.fama.io)
+- [Getting started](https://developer.fama.io/reference/api-token)
+- [API reference](https://developer.fama.io/reference/fama-rest-api)
+- [Pricing](https://fama.io/pricing)
+- [Sign up](https://app.fama.io)
+- [Support](https://fama.io/contact)
+- [Blog](https://fama.io/blog)
+- [Compliance](https://trust.fama.io/)
+- [Terms of service](https://fama.io/terms-and-conditions)
+- [Privacy policy](https://fama.io/privacy-policy)
+- [Status](https://status.fama.io)
+
+## API Evangelist rating
+
+**Kin Score 62.5** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.4 |
+| Contract quality | 72.2 |
+| Contract governance | 35.6 |
+| Operational transparency | 44.7 |
+| Developer ergonomics | 47.0 |
+| Access clarity | 81.6 |
+
+**Agent readiness 41.0** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 27.3** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/fama/](https://apis.io/providers/fama/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Fama: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/fama/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
